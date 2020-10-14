@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Franklin Chen</title>
+  
+  <subtitle>Franklin Chen</subtitle>
+  <link href="http://www.qinshoubro.com/atom.xml" rel="self"/>
+  
+  <link href="http://www.qinshoubro.com/"/>
+  <updated>2020-10-14T09:15:49.643Z</updated>
+  <id>http://www.qinshoubro.com/</id>
+  
+  <author>
+    <name>Franklin Chen</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为什么要写博客？</title>
+    <link href="http://www.qinshoubro.com/sui-bi/my-first-blog/"/>
+    <id>http://www.qinshoubro.com/sui-bi/my-first-blog/</id>
+    <published>2020-10-13T09:00:43.000Z</published>
+    <updated>2020-10-14T09:15:49.643Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;​       </summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="http://www.qinshoubro.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="http://www.qinshoubro.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://www.qinshoubro.com/test/hello-world/"/>
+    <id>http://www.qinshoubro.com/test/hello-world/</id>
+    <published>2020-10-13T06:01:04.775Z</published>
+    <updated>2020-10-13T08:32:14.454Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="test" scheme="http://www.qinshoubro.com/categories/test/"/>
+    
+    
+    <category term="test" scheme="http://www.qinshoubro.com/tags/test/"/>
+    
+  </entry>
+  
+</feed>
