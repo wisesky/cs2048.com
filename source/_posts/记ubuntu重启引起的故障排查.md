@@ -128,6 +128,8 @@ menuentry 'Ubuntu, with Linux 4.15.0-60-generic'
 vi /etc/default/grub
 # change
 GRUB_DEFAULT=“Advanced options for Ubuntu > Ubuntu, with Linux 4.15.0-60-generic”
+# 也可以 用数字标示 0作为第一个菜单
+GRUB_DEFAULT = "1> 4" #改成这样
 
 GRUB_TIMEOUT_STYLE=menu # default: hidden
 GRUB_TIMEOUT=3 # default: 0
