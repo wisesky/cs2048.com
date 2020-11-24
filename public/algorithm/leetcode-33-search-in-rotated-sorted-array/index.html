@@ -514,14 +514,14 @@ bias <span class="token operator">=</span> start</code></pre>
 <pre class=" language-python"><code class="language-python">start <span class="token operator">=</span> <span class="token number">0</span>
 end <span class="token operator">=</span> len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
 <span class="token keyword">while</span> start <span class="token operator">&lt;=</span> end<span class="token punctuation">:</span>
-      mid <span class="token operator">=</span> <span class="token punctuation">(</span>start<span class="token operator">+</span>end<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
-      mid_pos <span class="token operator">=</span> <span class="token punctuation">(</span>mid <span class="token operator">+</span> bias<span class="token punctuation">)</span>     <span class="token operator">%</span> len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
-      val <span class="token operator">=</span> nums<span class="token punctuation">[</span>mid_pos<span class="token punctuation">]</span>
-      <span class="token keyword">if</span> target <span class="token operator">==</span> value<span class="token punctuation">:</span>
+    mid <span class="token operator">=</span> <span class="token punctuation">(</span>start<span class="token operator">+</span>end<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+    mid_pos <span class="token operator">=</span> <span class="token punctuation">(</span>mid <span class="token operator">+</span> bias<span class="token punctuation">)</span>     <span class="token operator">%</span> len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
+    val <span class="token operator">=</span> nums<span class="token punctuation">[</span>mid_pos<span class="token punctuation">]</span>
+    <span class="token keyword">if</span> target <span class="token operator">==</span> value<span class="token punctuation">:</span>
         <span class="token keyword">return</span> mid_pos
-      <span class="token keyword">if</span> target <span class="token operator">&lt;</span> value<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> target <span class="token operator">&lt;</span> value<span class="token punctuation">:</span>
         end <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
-      <span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
         start <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
 
 <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span></code></pre>
@@ -548,19 +548,19 @@ nums<span class="token punctuation">[</span>mid<span class="token punctuation">]
 hi <span class="token operator">=</span> len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
 
 <span class="token keyword">while</span> lo <span class="token operator">&lt;=</span> hi<span class="token punctuation">:</span>
-        mid <span class="token operator">=</span> <span class="token punctuation">(</span>lo<span class="token operator">+</span>hi<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
-      val <span class="token operator">=</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">></span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token punctuation">(</span>target <span class="token operator">></span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">pass</span>
-      <span class="token keyword">else</span><span class="token punctuation">:</span>
-            val <span class="token operator">=</span>  float<span class="token punctuation">(</span><span class="token string">'-inf'</span><span class="token punctuation">)</span> <span class="token keyword">if</span> target <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token keyword">else</span> float<span class="token punctuation">(</span><span class="token string">'inf'</span><span class="token punctuation">)</span>
-
-      <span class="token keyword">if</span> val <span class="token operator">&lt;</span> target<span class="token punctuation">:</span>
-            lo <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
-    <span class="token keyword">elif</span> val <span class="token operator">></span> target<span class="token punctuation">:</span>
-          hi <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
+    mid <span class="token operator">=</span> <span class="token punctuation">(</span>lo<span class="token operator">+</span>hi<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+    val <span class="token operator">=</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">></span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token punctuation">(</span>target <span class="token operator">></span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
     <span class="token keyword">else</span><span class="token punctuation">:</span>
-          <span class="token keyword">return</span> mid
+        val <span class="token operator">=</span>  float<span class="token punctuation">(</span><span class="token string">'-inf'</span><span class="token punctuation">)</span> <span class="token keyword">if</span> target <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token keyword">else</span> float<span class="token punctuation">(</span><span class="token string">'inf'</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> val <span class="token operator">&lt;</span> target<span class="token punctuation">:</span>
+        lo <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token keyword">elif</span> val <span class="token operator">></span> target<span class="token punctuation">:</span>
+        hi <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> mid
 
   <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span></code></pre>
 <p>Time Complexity: $O(log(n))$</p>
@@ -571,21 +571,21 @@ hi <span class="token operator">=</span> len<span class="token punctuation">(</s
 hi <span class="token operator">=</span> len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
 
 <span class="token keyword">while</span> lo <span class="token operator">&lt;=</span> hi<span class="token punctuation">:</span>
-        mid <span class="token operator">=</span> <span class="token punctuation">(</span>lo<span class="token operator">+</span>hi<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
-        val <span class="token operator">=</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span>
-        <span class="token keyword">if</span> target <span class="token operator">==</span> val<span class="token punctuation">:</span>
-                <span class="token keyword">return</span> mid
+    mid <span class="token operator">=</span> <span class="token punctuation">(</span>lo<span class="token operator">+</span>hi<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
+    val <span class="token operator">=</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span>
+    <span class="token keyword">if</span> target <span class="token operator">==</span> val<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> mid
         <span class="token comment" spellcheck="true"># lo-mid 有序</span>
-        <span class="token keyword">if</span> nums<span class="token punctuation">[</span>lo<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> val<span class="token punctuation">:</span>
-                <span class="token keyword">if</span> target <span class="token operator">>=</span> nums<span class="token punctuation">[</span>lo<span class="token punctuation">]</span> <span class="token operator">and</span> target <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">:</span>
-                        hi <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
-                <span class="token keyword">else</span><span class="token punctuation">:</span>
-                        lo <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># mid-hi 有序</span>
-                <span class="token keyword">if</span> target <span class="token operator">></span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">and</span> target <span class="token operator">&lt;=</span> nums<span class="token punctuation">[</span>hi<span class="token punctuation">]</span><span class="token punctuation">:</span>
-                        lo <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
-                <span class="token keyword">else</span><span class="token punctuation">:</span>
-                        hi <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span></code></pre>
+    <span class="token keyword">if</span> nums<span class="token punctuation">[</span>lo<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> val<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> target <span class="token operator">>=</span> nums<span class="token punctuation">[</span>lo<span class="token punctuation">]</span> <span class="token operator">and</span> target <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            hi <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            lo <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># mid-hi 有序</span>
+        <span class="token keyword">if</span> target <span class="token operator">></span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">and</span> target <span class="token operator">&lt;=</span> nums<span class="token punctuation">[</span>hi<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            lo <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            hi <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span></code></pre>
 <p>Time Complexity: $O(log(n))$</p>
 <p>Space Complexity: $O(1)$</p>
 <h3 id="Conclude"><a href="#Conclude" class="headerlink" title="Conclude"></a>Conclude</h3><p>　　$log(n)$的时间复杂度，基本都是二分法的变体，平日自己对二分法过于忽视，导致理解不深刻，所以这个题目做起来才比较费劲。除此之外，解法二巧妙的利用了target 和 nums[mid]是否同一个分割排序段的条件，来简化判断，同时动态的更新nums[mid]值的方法很有启发性，比自己笨拙的设置一大堆if条件，结果自己都搞不清楚状况来的优雅许多。解法一二都是利用抽取出的关键信息来还原二分搜索法，解法三，则是试图找到target分段之前，获取排序信息，再以及排序信息搜索target，题目顿时变的简单了许多。</p>
@@ -827,18 +827,17 @@ hi <span class="token operator">=</span> len<span class="token punctuation">(</s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/algorithm/leetcode-33-search-in-rotated-sorted-array/">
+                <a href="/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="LeetCode 33. Search in Rotated Sorted Array">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="同步和异步编程(如何并行写同一个日志文件实践)">
                         
-                        <span class="card-title">LeetCode 33. Search in Rotated Sorted Array</span>
+                        <span class="card-title">同步和异步编程(如何并行写同一个日志文件实践)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -848,31 +847,30 @@ hi <span class="token operator">=</span> len<span class="token punctuation">(</s
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-17
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-23
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Algorithm/" class="post-category">
-                                    Algorithm
+                            <a href="/categories/Algorithms/" class="post-category">
+                                    Algorithms
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Algorithm/">
-                        <span class="chip bg-color">Algorithm</span>
+                    <a href="/tags/Algorithms/">
+                        <span class="chip bg-color">Algorithms</span>
                     </a>
                     
-                    <a href="/tags/LeetCode/">
-                        <span class="chip bg-color">LeetCode</span>
+                    <a href="/tags/OS/">
+                        <span class="chip bg-color">OS</span>
                     </a>
                     
                 </div>

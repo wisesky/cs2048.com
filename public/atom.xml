@@ -6,7 +6,7 @@
   <link href="http://www.qinshoubro.com/atom.xml" rel="self"/>
   
   <link href="http://www.qinshoubro.com/"/>
-  <updated>2020-11-17T10:39:10.889Z</updated>
+  <updated>2020-11-24T09:11:17.926Z</updated>
   <id>http://www.qinshoubro.com/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>同步和异步编程(如何并行写同一个日志文件实践)</title>
+    <link href="http://www.qinshoubro.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/"/>
+    <id>http://www.qinshoubro.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/</id>
+    <published>2020-11-23T08:27:20.000Z</published>
+    <updated>2020-11-24T09:11:17.926Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;　　最近遇到如何并行写日志文件的问题，查看之前的代码，发现是利用RabbitMQ 作为消息中转，把并行的日志流通过HTTP 请求整合成串行的方式，然后通过一个单独的 Rabbit-Consumer</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithms" scheme="http://www.qinshoubro.com/categories/Algorithms/"/>
+    
+    
+    <category term="Algorithms" scheme="http://www.qinshoubro.com/tags/Algorithms/"/>
+    
+    <category term="OS" scheme="http://www.qinshoubro.com/tags/OS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>LeetCode 33. Search in Rotated Sorted Array</title>
     <link href="http://www.qinshoubro.com/algorithm/leetcode-33-search-in-rotated-sorted-array/"/>
     <id>http://www.qinshoubro.com/algorithm/leetcode-33-search-in-rotated-sorted-array/</id>
     <published>2020-11-17T08:19:58.000Z</published>
-    <updated>2020-11-17T10:39:10.889Z</updated>
+    <updated>2020-11-24T09:29:43.209Z</updated>
     
     
       
@@ -48,7 +75,7 @@
     <link href="http://www.qinshoubro.com/yun-wei/ji-ubuntu-chong-qi-yin-qi-de-gu-zhang-pai-cha/"/>
     <id>http://www.qinshoubro.com/yun-wei/ji-ubuntu-chong-qi-yin-qi-de-gu-zhang-pai-cha/</id>
     <published>2020-11-04T07:25:29.000Z</published>
-    <updated>2020-11-17T02:47:19.877Z</updated>
+    <updated>2020-11-19T08:14:38.853Z</updated>
     
     
       

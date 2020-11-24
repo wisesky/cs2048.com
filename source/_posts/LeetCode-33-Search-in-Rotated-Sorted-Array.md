@@ -50,11 +50,11 @@ tags:
 
 ```python
 while start < end:
-    mid = (start + end ) //2
-    if nums[start] > nums[end]:
-        start = mid + 1
-    else:
-        end = mid
+	mid = (start + end ) //2
+	if nums[start] > nums[end]:
+		start = mid + 1
+	else:
+		end = mid
 bias = start
 ```
 
@@ -64,15 +64,15 @@ bias = start
 start = 0
 end = len(nums) - 1
 while start <= end:
-	  mid = (start+end) // 2
-  	mid_pos = (mid + bias) 	% len(nums)
-	  val = nums[mid_pos]
-	  if target == value:
-	    return mid_pos
-  	if target < value:
-    	end = mid - 1
-	  else:
-  	  start = mid + 1
+	mid = (start+end) // 2
+	mid_pos = (mid + bias) 	% len(nums)
+	val = nums[mid_pos]
+	if target == value:
+		return mid_pos
+	if target < value:
+		end = mid - 1
+	else:
+		start = mid + 1
     
 return -1
 ```
@@ -118,19 +118,19 @@ lo = 0
 hi = len(nums) - 1
 
 while lo <= hi:
-		mid = (lo+hi) // 2
-	  val = nums[mid]
-  	if (val > nums[0] ) == (target > nums[0]):
-    		pass
-	  else:
-  		  val =  float('-inf') if target < nums[0] else float('inf')
+	mid = (lo+hi) // 2
+	val = nums[mid]
+	if (val > nums[0] ) == (target > nums[0]):
+		pass
+	else:
+		val =  float('-inf') if target < nums[0] else float('inf')
    
-	  if val < target:
-  	  	lo = mid + 1
-    elif val > target:
-      	hi = mid - 1
-    else:
-      	return mid
+	if val < target:
+		lo = mid + 1
+	elif val > target:
+		hi = mid - 1
+	else:
+		return mid
       
   return -1
 ```
@@ -150,21 +150,21 @@ lo = 0
 hi = len(nums) - 1
 
 while lo <= hi:
-		mid = (lo+hi) // 2
-		val = nums[mid]
-		if target == val:
-				return mid
+	mid = (lo+hi) // 2
+	val = nums[mid]
+	if target == val:
+		return mid
 		# lo-mid 有序
-		if nums[lo] <= val:
-				if target >= nums[lo] and target < nums[mid]:
-						hi = mid - 1
-				else:
-						lo = mid + 1
-		else: # mid-hi 有序
-				if target > nums[mid] and target <= nums[hi]:
-						lo = mid + 1
-				else:
-						hi = mid - 1
+	if nums[lo] <= val:
+		if target >= nums[lo] and target < nums[mid]:
+			hi = mid - 1
+		else:
+			lo = mid + 1
+	else: # mid-hi 有序
+		if target > nums[mid] and target <= nums[hi]:
+			lo = mid + 1
+		else:
+			hi = mid - 1
 ```
 
 Time Complexity: $O(log(n))$

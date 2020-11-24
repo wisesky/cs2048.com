@@ -491,7 +491,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>　　前几天，由于自己服务所在的服务器需要停机维护，运行已有近半年的ubuntu 18.04 LST终于迎来首次重启，尽管由于预料到长时间的服务器不停机，在关机或者重启阶段会有不可预知的事件发生。但是当服务器真的出现网络无法连接的状况的时候，长时间没有安装系统的我那一刻竟然还有点懵B了，此文主要关注此次故障问题排查和解决记录，作为以后服务器维护 参考之用。</p>
+                <p>　　前几天，由于自己服务所在的服务器需要停机维护，运行已有近半年的ubuntu 18.04 LTS终于迎来首次重启，尽管由于预料到长时间的服务器不停机，在关机或者重启阶段会有不可预知的事件发生。但是当服务器真的出现网络无法连接的状况的时候，长时间没有安装系统的我那一刻竟然还有点懵B了，此文主要关注此次故障问题排查和解决记录，作为以后服务器维护 参考之用。</p>
 <h3 id="网络故障"><a href="#网络故障" class="headerlink" title="网络故障"></a>网络故障</h3><p>　　重启之后，首先出现的问题就是网络接口灯直接熄灭，几番周折接上显示器和键盘之后，发现是网卡没有ipv4的地址，反而是ipv6的地址是有的。</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">ifconfig</span> -a <span class="token comment" spellcheck="true"># 显示所有的网卡，如果网卡无ip，单纯的用ifconfig 是无法显示的所有网卡设备的</span>
 <span class="token comment" spellcheck="true"># or</span>
