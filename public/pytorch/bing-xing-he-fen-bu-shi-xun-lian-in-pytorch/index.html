@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="LeetCode 33. Search in Rotated Sorted Array, Franklin Chen">
+    <meta name="keywords" content="并行和分布式训练 in Pytorch, Franklin Chen">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>LeetCode 33. Search in Rotated Sorted Array | Franklin Chen</title>
+    <title>并行和分布式训练 in Pytorch | Franklin Chen</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LeetCode 33. Search in Rotated Sorted Array</h1>
+                    <h1 class="description center-align post-title">并行和分布式训练 in Pytorch</h1>
                 </div>
             </div>
         </div>
@@ -433,12 +433,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Algorithm/">
-                                <span class="chip bg-color">Algorithm</span>
+                            <a href="/tags/Pytorch/">
+                                <span class="chip bg-color">Pytorch</span>
                             </a>
                         
-                            <a href="/tags/LeetCode/">
-                                <span class="chip bg-color">LeetCode</span>
+                            <a href="/tags/NLP/">
+                                <span class="chip bg-color">NLP</span>
                             </a>
                         
                     </div>
@@ -449,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Algorithm/" class="post-category">
-                                Algorithm
+                            <a href="/categories/Pytorch/" class="post-category">
+                                Pytorch
                             </a>
                         
                     </div>
@@ -462,7 +462,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-17
+                    2020-11-25
                 </div>
                 
 
@@ -471,7 +471,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    124
                 </div>
                 
 
@@ -483,114 +483,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="LeetCode-33-Search-in-Rotated-Sorted-Array"><a href="#LeetCode-33-Search-in-Rotated-Sorted-Array" class="headerlink" title="LeetCode 33. Search in Rotated Sorted Array"></a>LeetCode 33. Search in Rotated Sorted Array</h3><p><img src="img1.png"></p>
-<p>　　应该是二分法的变种优化，但是实际分析的过程中，自己的想法被太多的if条件给弄晕了，虽然勉强解出来了，但是更多是凭借临场发挥来作出的，至于宏观的算法原理，自己仍然理解不够透彻，借助讨论区的总结出几个好玩的解法</p>
-<h4 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h4><p>　　最直接的想法是找到数组的偏移量，通过还原数组为排序数组的方式，最终利用二分法搜索target ，但是自己并没有想出可以$O(log(n))$搜索偏移量的方法，所以没有深入思考。借助讨论区的提醒，其实偏移量就是最小值的下标，所以只需要找到一种在$O(log(n))$下找到最小值的方法，这里仍然是用二分法，只不过start, mid, end 之间比较关系是不同的</p>
-<ul>
-<li>start 和 mid:</li>
-</ul>
-<p>　mid &gt; start : 最小值 in left</p>
-<p><img src="img3.jpg"></p>
-<p>　mid &lt; start : 最小值仍然 in left:</p>
-<p><img src="img2.jpg"></p>
-<ul>
-<li>mid 和 end</li>
-</ul>
-<p>　　mid &lt; end: 最小值 in left，end = mid</p>
-<p><img src="img6.jpg"></p>
-<p>　　mid &gt; end : 最小值 in right, start = mid</p>
-<p><img src="img7.jpg"></p>
-<p>　　只需要mid 和 end就可以利用二分法搜索最小值，只不过需要注意的一点是，可能会出现死循环</p>
-<p><img src="img8.jpg"></p>
-<p>　　主要原因应该是，当最小值in right 的时候，mid 原地更新，而在in right 的情况，实际上mid所在的value不可能是最小值，所以 start = mid + 1 即可</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">while</span> start <span class="token operator">&lt;</span> end<span class="token punctuation">:</span>
-    mid <span class="token operator">=</span> <span class="token punctuation">(</span>start <span class="token operator">+</span> end <span class="token punctuation">)</span> <span class="token operator">//</span><span class="token number">2</span>
-    <span class="token keyword">if</span> nums<span class="token punctuation">[</span>start<span class="token punctuation">]</span> <span class="token operator">></span> nums<span class="token punctuation">[</span>end<span class="token punctuation">]</span><span class="token punctuation">:</span>
-        start <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
-    <span class="token keyword">else</span><span class="token punctuation">:</span>
-        end <span class="token operator">=</span> mid
-bias <span class="token operator">=</span> start</code></pre>
-<p>　　最后利用偏移量，转换mid 为 偏移后的mid，二分搜索target</p>
-<pre class=" language-python"><code class="language-python">start <span class="token operator">=</span> <span class="token number">0</span>
-end <span class="token operator">=</span> len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
-<span class="token keyword">while</span> start <span class="token operator">&lt;=</span> end<span class="token punctuation">:</span>
-    mid <span class="token operator">=</span> <span class="token punctuation">(</span>start<span class="token operator">+</span>end<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
-    mid_pos <span class="token operator">=</span> <span class="token punctuation">(</span>mid <span class="token operator">+</span> bias<span class="token punctuation">)</span>     <span class="token operator">%</span> len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
-    val <span class="token operator">=</span> nums<span class="token punctuation">[</span>mid_pos<span class="token punctuation">]</span>
-    <span class="token keyword">if</span> target <span class="token operator">==</span> value<span class="token punctuation">:</span>
-        <span class="token keyword">return</span> mid_pos
-    <span class="token keyword">if</span> target <span class="token operator">&lt;</span> value<span class="token punctuation">:</span>
-        end <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
-    <span class="token keyword">else</span><span class="token punctuation">:</span>
-        start <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
-
-<span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span></code></pre>
-<p>Time Complexity: $O(log(n))$</p>
-<p>Space Complexity: $O(1)$</p>
-<h4 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h4><p>　　这里还是将被切分的2段分成2个有序数组来处理，比如,[4 5 6 7 1 2 3 ]分成 [4 5 6 7 ]和[1 2 3 ]，判断target位于其中的哪一段，然后将另一段变成-inf or inf，这样做的目的是可以用正常的二分法来搜索改变后的数组。</p>
-<p>[ 4 5 6 7 1 2 3] ，如果 target = 5，那么数组可以看做 [ 4 5 6 7 inf inf inf ]。</p>
-<p>[ 4 5 6 7 1 2 3] ，如果 target = 2，那么数组可以看做 [ -inf -inf - inf -inf 1 2 3]。</p>
-<p>　　实践阶段，只需要判断nums[mid]的val，如果val跟target同一段，val不变，如果val跟target不通段，就要变成-inf or inf</p>
-<ul>
-<li>nums[mid] 和 target 同一段的条件: </li>
-</ul>
-<pre class=" language-python"><code class="language-python">nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">and</span> target <span class="token operator">></span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-<span class="token operator">or</span>
-nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">and</span> target <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span></code></pre>
-<ul>
-<li>nums[mid] 和 target 不通段的条件：</li>
-</ul>
-<pre class=" language-python"><code class="language-python">nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">and</span> target <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-<span class="token operator">or</span>
-nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">and</span> target <span class="token operator">></span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span></code></pre>
-<p>这样动态的变更nums[mid]的val，保持nums始终与target同段段那部分不变，不同段则变为-inf or inf</p>
-<pre class=" language-python"><code class="language-python">lo <span class="token operator">=</span> <span class="token number">0</span>
-hi <span class="token operator">=</span> len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
-
-<span class="token keyword">while</span> lo <span class="token operator">&lt;=</span> hi<span class="token punctuation">:</span>
-    mid <span class="token operator">=</span> <span class="token punctuation">(</span>lo<span class="token operator">+</span>hi<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
-    val <span class="token operator">=</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>val <span class="token operator">></span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token punctuation">(</span>target <span class="token operator">></span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">pass</span>
-    <span class="token keyword">else</span><span class="token punctuation">:</span>
-        val <span class="token operator">=</span>  float<span class="token punctuation">(</span><span class="token string">'-inf'</span><span class="token punctuation">)</span> <span class="token keyword">if</span> target <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token keyword">else</span> float<span class="token punctuation">(</span><span class="token string">'inf'</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">if</span> val <span class="token operator">&lt;</span> target<span class="token punctuation">:</span>
-        lo <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
-    <span class="token keyword">elif</span> val <span class="token operator">></span> target<span class="token punctuation">:</span>
-        hi <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
-    <span class="token keyword">else</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> mid
-
-  <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span></code></pre>
-<p>Time Complexity: $O(log(n))$</p>
-<p>Space Complexity: $O(1)$</p>
-<h4 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h4><p>　　基于一个事实，数组从任意位置劈开后，至少有一半是有序的</p>
-<p>　　这里只需要判断二分法的其中一半是否有序， 再根据有序的这一部分判断target是否包含其中</p>
-<pre class=" language-python"><code class="language-python">lo <span class="token operator">=</span> <span class="token number">0</span>
-hi <span class="token operator">=</span> len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
-
-<span class="token keyword">while</span> lo <span class="token operator">&lt;=</span> hi<span class="token punctuation">:</span>
-    mid <span class="token operator">=</span> <span class="token punctuation">(</span>lo<span class="token operator">+</span>hi<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span>
-    val <span class="token operator">=</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span>
-    <span class="token keyword">if</span> target <span class="token operator">==</span> val<span class="token punctuation">:</span>
-        <span class="token keyword">return</span> mid
-        <span class="token comment" spellcheck="true"># lo-mid 有序</span>
-    <span class="token keyword">if</span> nums<span class="token punctuation">[</span>lo<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> val<span class="token punctuation">:</span>
-        <span class="token keyword">if</span> target <span class="token operator">>=</span> nums<span class="token punctuation">[</span>lo<span class="token punctuation">]</span> <span class="token operator">and</span> target <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">:</span>
-            hi <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            lo <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
-    <span class="token keyword">else</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># mid-hi 有序</span>
-        <span class="token keyword">if</span> target <span class="token operator">></span> nums<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">and</span> target <span class="token operator">&lt;=</span> nums<span class="token punctuation">[</span>hi<span class="token punctuation">]</span><span class="token punctuation">:</span>
-            lo <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            hi <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span></code></pre>
-<p>Time Complexity: $O(log(n))$</p>
-<p>Space Complexity: $O(1)$</p>
-<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>　　$log(n)$的时间复杂度，基本都是二分法的变体，平日自己对二分法过于忽视，导致理解不深刻，所以这个题目做起来才比较费劲。除此之外，解法二巧妙的利用了target 和 nums[mid]是否同一个分割排序段的条件，来简化判断，同时动态的更新nums[mid]值的方法很有启发性，比自己笨拙的设置一大堆if条件，结果自己都搞不清楚状况来的优雅许多。解法一二都是利用抽取出的关键信息来还原二分搜索法，解法三，则是试图找到target分段之前，获取排序信息，再以及排序信息搜索target，题目顿时变的简单了许多。</p>
-<p>Reference:</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.wang/leetCode-33-Search-in-Rotated-Sorted-Array.html">LeetCode 33. Search in Rotated Sorted Array</a></p>
+                <p>　　虽然还没有机会用到CUDA集群，但是前段时间对协程和并行化的研究，让我忍不住想要探索一下如何在多个GPU下利用Pytorch加快训练的实践方法，算是为之后并行训练优化一个理论参考吧！</p>
+<p>　　Pytorch 大体上有3种实现并行的接口（另外还有一种不利用接口的拼接模型的技巧，之后再单独讨论），分别是：nn.DataParallel, nn.multiprocessing, nn.para</p>
 
             </div>
             <hr/>
@@ -616,7 +510,7 @@ hi <span class="token operator">=</span> len<span class="token punctuation">(</s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.qinshoubro.com/algorithm/leetcode-33-search-in-rotated-sorted-array/">http://www.qinshoubro.com/algorithm/leetcode-33-search-in-rotated-sorted-array/</a>
+                    <a href="http://www.qinshoubro.com/pytorch/bing-xing-he-fen-bu-shi-xun-lian-in-pytorch/">http://www.qinshoubro.com/pytorch/bing-xing-he-fen-bu-shi-xun-lian-in-pytorch/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -654,12 +548,12 @@ hi <span class="token operator">=</span> len<span class="token punctuation">(</s
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Algorithm/">
-                                    <span class="chip bg-color">Algorithm</span>
+                                <a href="/tags/Pytorch/">
+                                    <span class="chip bg-color">Pytorch</span>
                                 </a>
                             
-                                <a href="/tags/LeetCode/">
-                                    <span class="chip bg-color">LeetCode</span>
+                                <a href="/tags/NLP/">
+                                    <span class="chip bg-color">NLP</span>
                                 </a>
                             
                         </div>
@@ -831,6 +725,63 @@ hi <span class="token operator">=</span> len<span class="token punctuation">(</s
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="GPU in Pytorch  并行和分布式实践">
+                        
+                        <span class="card-title">GPU in Pytorch  并行和分布式实践</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Pytorch/" class="post-category">
+                                    Pytorch
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Pytorch/">
+                        <span class="chip bg-color">Pytorch</span>
+                    </a>
+                    
+                    <a href="/tags/CUDA/">
+                        <span class="chip bg-color">CUDA</span>
+                    </a>
+                    
+                    <a href="/tags/GPU/">
+                        <span class="chip bg-color">GPU</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/">
                     <div class="card-image">
                         
@@ -847,9 +798,9 @@ hi <span class="token operator">=</span> len<span class="token punctuation">(</s
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -871,67 +822,6 @@ hi <span class="token operator">=</span> len<span class="token punctuation">(</s
                     
                     <a href="/tags/OS/">
                         <span class="chip bg-color">OS</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/yun-wei/ji-ubuntu-chong-qi-yin-qi-de-gu-zhang-pai-cha/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="记ubuntu重启引起的故障排查">
-                        
-                        <span class="card-title">记ubuntu重启引起的故障排查</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-04
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E8%BF%90%E7%BB%B4/" class="post-category">
-                                    运维
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/ubuntu/">
-                        <span class="chip bg-color">ubuntu</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/">
-                        <span class="chip bg-color">故障排查</span>
-                    </a>
-                    
-                    <a href="/tags/linux%E5%86%85%E6%A0%B8/">
-                        <span class="chip bg-color">linux内核</span>
-                    </a>
-                    
-                    <a href="/tags/grub/">
-                        <span class="chip bg-color">grub</span>
                     </a>
                     
                 </div>

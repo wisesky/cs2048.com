@@ -6,7 +6,7 @@
   <link href="http://www.qinshoubro.com/atom.xml" rel="self"/>
   
   <link href="http://www.qinshoubro.com/"/>
-  <updated>2020-11-24T09:11:17.926Z</updated>
+  <updated>2020-11-25T09:51:54.326Z</updated>
   <id>http://www.qinshoubro.com/</id>
   
   <author>
@@ -17,11 +17,69 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>GPU in Pytorch  并行和分布式实践</title>
+    <link href="http://www.qinshoubro.com/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/"/>
+    <id>http://www.qinshoubro.com/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/</id>
+    <published>2020-11-25T07:07:07.000Z</published>
+    <updated>2020-11-25T09:51:54.326Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;　　虽然还没有机会用到CUDA集群，但是前段时间对协程和并行化的研究，让我忍不住想要探索一下如何在多个GPU下利用Pytorch加快训练的实践方法，算是为之后并行训练优化一个理论参考吧！&lt;/p&gt;
+&lt;p&gt;　　Pytorch</summary>
+        
+      
+    
+    
+    
+    <category term="Pytorch" scheme="http://www.qinshoubro.com/categories/Pytorch/"/>
+    
+    
+    <category term="Pytorch" scheme="http://www.qinshoubro.com/tags/Pytorch/"/>
+    
+    <category term="CUDA" scheme="http://www.qinshoubro.com/tags/CUDA/"/>
+    
+    <category term="GPU" scheme="http://www.qinshoubro.com/tags/GPU/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>并行和分布式训练 in Pytorch</title>
+    <link href="http://www.qinshoubro.com/pytorch/bing-xing-he-fen-bu-shi-xun-lian-in-pytorch/"/>
+    <id>http://www.qinshoubro.com/pytorch/bing-xing-he-fen-bu-shi-xun-lian-in-pytorch/</id>
+    <published>2020-11-25T06:54:43.000Z</published>
+    <updated>2020-11-25T07:04:41.380Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;　　虽然还没有机会用到CUDA集群，但是前段时间对协程和并行化的研究，让我忍不住想要探索一下如何在多个GPU下利用Pytorch加快训练的实践方法，算是为之后并行训练优化一个理论参考吧！&lt;/p&gt;
+&lt;p&gt;　　Pytorch</summary>
+        
+      
+    
+    
+    
+    <category term="Pytorch" scheme="http://www.qinshoubro.com/categories/Pytorch/"/>
+    
+    
+    <category term="Pytorch" scheme="http://www.qinshoubro.com/tags/Pytorch/"/>
+    
+    <category term="NLP" scheme="http://www.qinshoubro.com/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
     <title>同步和异步编程(如何并行写同一个日志文件实践)</title>
     <link href="http://www.qinshoubro.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/"/>
     <id>http://www.qinshoubro.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/</id>
     <published>2020-11-23T08:27:20.000Z</published>
-    <updated>2020-11-24T09:11:17.926Z</updated>
+    <updated>2020-11-25T06:54:04.063Z</updated>
     
     
       
@@ -48,7 +106,7 @@
     <link href="http://www.qinshoubro.com/algorithm/leetcode-33-search-in-rotated-sorted-array/"/>
     <id>http://www.qinshoubro.com/algorithm/leetcode-33-search-in-rotated-sorted-array/</id>
     <published>2020-11-17T08:19:58.000Z</published>
-    <updated>2020-11-24T09:29:43.209Z</updated>
+    <updated>2020-11-25T06:18:15.193Z</updated>
     
     
       
@@ -75,7 +133,7 @@
     <link href="http://www.qinshoubro.com/yun-wei/ji-ubuntu-chong-qi-yin-qi-de-gu-zhang-pai-cha/"/>
     <id>http://www.qinshoubro.com/yun-wei/ji-ubuntu-chong-qi-yin-qi-de-gu-zhang-pai-cha/</id>
     <published>2020-11-04T07:25:29.000Z</published>
-    <updated>2020-11-19T08:14:38.853Z</updated>
+    <updated>2020-11-25T06:17:43.862Z</updated>
     
     
       
@@ -131,14 +189,14 @@
     <link href="http://www.qinshoubro.com/sui-bi/my-first-blog/"/>
     <id>http://www.qinshoubro.com/sui-bi/my-first-blog/</id>
     <published>2020-10-13T09:00:43.000Z</published>
-    <updated>2020-10-28T09:37:56.134Z</updated>
+    <updated>2020-11-25T06:26:55.417Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h3 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;p&gt;　　我有一个很奇特的习性，就是无论做任何事情，喜欢起个大早，却赶了个晚集；究其原因，想来应该是一直以来困扰我的慵懒毛病，做什么事情都是三分钟热度，热情消退之后，很多设想都被抛诸脑后，结果留下一地鸡毛。曾经几度自我挣扎过，甚至几度接近成功，但是每次达到一定高度之后，很快就如弹</summary>
         
       
     

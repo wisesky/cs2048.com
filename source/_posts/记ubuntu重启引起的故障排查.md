@@ -153,7 +153,7 @@ sudo apt-mark hold linux-image-generic linux-headers-generic
 sudo apt-mark unhold linux-image-generic linux-headers-generic
 ```
 
-### Conclude
+### Conclusion
 
 　　至此，网络问题，nvidia驱动问题，docker问题都得到圆满解决。回顾过程，心态方面还是稍微不够沉着冷静，发现问题根本原因之前，过分关注表象，诸如 netplan 的配置花费的过多时间，反而问题原因没有深入思考，导致东弄西弄一下，试图用碰运气的方式来解决问题方式终究还是有瓶颈的，或许是碰运气的方式曾经取得的成果对现在行为抉择还是产生的一定的影响，其实在陷入僵局之后的思考基本已经锁定了问题，就算是没有解决问题的彼时，心里对故障的排除已经基本有底了，最后的解决也只是水到渠成而已。
 

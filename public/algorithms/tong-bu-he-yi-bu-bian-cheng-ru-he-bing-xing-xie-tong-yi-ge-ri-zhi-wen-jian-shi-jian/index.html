@@ -659,7 +659,7 @@ connection<span class="token punctuation">.</span>close<span class="token punctu
 <p>IO密集型，大部分时间消耗在IO上，C++/Java无法发挥优势，代码量少开发效率最高的Python具备优势</p>
 </blockquote>
 <p>　　所以，Python最好最为原型开发，保持逻辑流程通顺的前提下，可以用其他高效的语言如C++/Java改写最耗时的模块，迭代优化开发。</p>
-<h4 id="协程：单线程异步"><a href="#协程：单线程异步" class="headerlink" title="协程：单线程异步"></a>协程：单线程异步</h4><p>　　虽然Python无法利用多线程的并行优势，但是还是有优化的手段的。如果把条件限制到单线程，那么有一个很自然的优化方式就是单线程异步，也就是只用单线程的情况下，实现程序内部的并发，这个并发是程序可控的，而不是由操作系统来根据一定策略加锁。</p>
+<h3 id="协程：单线程异步"><a href="#协程：单线程异步" class="headerlink" title="协程：单线程异步"></a>协程：单线程异步</h3><p>　　虽然Python无法利用多线程的并行优势，但是还是有优化的手段的。如果把条件限制到单线程，那么有一个很自然的优化方式就是单线程异步，也就是只用单线程的情况下，实现程序内部的并发，这个并发是程序可控的，而不是由操作系统来根据一定策略加锁。</p>
 <p>　　Python下有协程库asyncio内置了异步IO的支持。编程模型是一个消息循环，从asyncio获取EventLoop引用，把需要执行的协程作为参数传递给EventLoop，实现异步IO,下面直接给出协程版本的producer-consumer</p>
 <pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> asyncio
 <span class="token keyword">import</span> random
@@ -695,7 +695,7 @@ connection<span class="token punctuation">.</span>close<span class="token punctu
 loop <span class="token operator">=</span> asyncio<span class="token punctuation">.</span>get_event_loop<span class="token punctuation">(</span><span class="token punctuation">)</span>
 loop<span class="token punctuation">.</span>run_until_complete<span class="token punctuation">(</span>run<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 loop<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
-<h3 id="Conclude"><a href="#Conclude" class="headerlink" title="Conclude"></a>Conclude</h3><p>　　至此，关于同步异步的一些知识点和实践问题梳理完毕，协程的实践经验还是有点欠缺，以后看框架源码的时候，需要多学习和思考。</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>　　至此，关于同步异步的一些知识点和实践问题梳理完毕，协程的实践经验还是有点欠缺，以后看框架源码的时候，需要多学习和思考。</p>
 <p>References:</p>
 <p><a target="_blank" rel="noopener" href="https://asyncio.readthedocs.io/en/latest/producer_consumer.html">Producer/consumer-examlpe_asyncio</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017968846697824">协程-廖雪峰</a></p>
@@ -938,18 +938,17 @@ loop<span class="token punctuation">.</span>close<span class="token punctuation"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/">
+                <a href="/pytorch/bing-xing-he-fen-bu-shi-xun-lian-in-pytorch/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="同步和异步编程(如何并行写同一个日志文件实践)">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="并行和分布式训练 in Pytorch">
                         
-                        <span class="card-title">同步和异步编程(如何并行写同一个日志文件实践)</span>
+                        <span class="card-title">并行和分布式训练 in Pytorch</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -959,31 +958,30 @@ loop<span class="token punctuation">.</span>close<span class="token punctuation"
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-23
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Algorithms/" class="post-category">
-                                    Algorithms
+                            <a href="/categories/Pytorch/" class="post-category">
+                                    Pytorch
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Algorithms/">
-                        <span class="chip bg-color">Algorithms</span>
+                    <a href="/tags/Pytorch/">
+                        <span class="chip bg-color">Pytorch</span>
                     </a>
                     
-                    <a href="/tags/OS/">
-                        <span class="chip bg-color">OS</span>
+                    <a href="/tags/NLP/">
+                        <span class="chip bg-color">NLP</span>
                     </a>
                     
                 </div>
