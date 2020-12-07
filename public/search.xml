@@ -62,33 +62,6 @@
     
     
     <entry>
-      <title>并行和分布式训练 in Pytorch</title>
-      <link href="pytorch/bing-xing-he-fen-bu-shi-xun-lian-in-pytorch/"/>
-      <url>pytorch/bing-xing-he-fen-bu-shi-xun-lian-in-pytorch/</url>
-      
-        <content type="html"><![CDATA[<p>　　虽然还没有机会用到CUDA集群，但是前段时间对协程和并行化的研究，让我忍不住想要探索一下如何在多个GPU下利用Pytorch加快训练的实践方法，算是为之后并行训练优化一个理论参考吧！</p><p>　　Pytorch 大体上有3种实现并行的接口（另外还有一种不利用接口的拼接模型的技巧，之后再单独讨论），分别是：nn.DataParallel, nn.multiprocessing, nn.para</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Pytorch </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Pytorch </tag>
-            
-            <tag> NLP </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>同步和异步编程(如何并行写同一个日志文件实践)</title>
       <link href="algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/"/>
       <url>algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/</url>

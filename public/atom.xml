@@ -76,34 +76,6 @@
   </entry>
   
   <entry>
-    <title>并行和分布式训练 in Pytorch</title>
-    <link href="http://www.qinshoubro.com/pytorch/bing-xing-he-fen-bu-shi-xun-lian-in-pytorch/"/>
-    <id>http://www.qinshoubro.com/pytorch/bing-xing-he-fen-bu-shi-xun-lian-in-pytorch/</id>
-    <published>2020-11-25T06:54:43.000Z</published>
-    <updated>2020-11-25T07:04:41.380Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;　　虽然还没有机会用到CUDA集群，但是前段时间对协程和并行化的研究，让我忍不住想要探索一下如何在多个GPU下利用Pytorch加快训练的实践方法，算是为之后并行训练优化一个理论参考吧！&lt;/p&gt;
-&lt;p&gt;　　Pytorch</summary>
-        
-      
-    
-    
-    
-    <category term="Pytorch" scheme="http://www.qinshoubro.com/categories/Pytorch/"/>
-    
-    
-    <category term="Pytorch" scheme="http://www.qinshoubro.com/tags/Pytorch/"/>
-    
-    <category term="NLP" scheme="http://www.qinshoubro.com/tags/NLP/"/>
-    
-  </entry>
-  
-  <entry>
     <title>同步和异步编程(如何并行写同一个日志文件实践)</title>
     <link href="http://www.qinshoubro.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/"/>
     <id>http://www.qinshoubro.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/</id>
