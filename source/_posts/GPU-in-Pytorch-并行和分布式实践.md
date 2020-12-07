@@ -17,7 +17,7 @@ tags:
 
 　　Pytorch 大体上有3种实现并行的接口（另外还有一种不利用接口的拼接模型的技巧，之后再单独讨论），分别是：torch.multiprocessing, nn.DataParallel, nn.parallel.DistributedDataParallel，如果是是GPU多卡运行，最佳实践是 nn.parallle.DistributedDataParallel,官方文档 [CUDA SEMANTIC](https://pytorch.org/docs/stable/notes/cuda.html#cuda-nn-ddp-instead) 是这么描述的：
 
-> ### Use nn.parallel.DistributedDataParallel instead of multiprocessing or nn.DataParallel
+> **Use nn.parallel.DistributedDataParallel instead of multiprocessing or nn.DataParallel**
 >
 > Most use cases involving batched inputs and multiple GPUs should default to using [`DistributedDataParallel`](https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html#torch.nn.parallel.DistributedDataParallel) to utilize more than one GPU.
 >
@@ -138,7 +138,7 @@ class ToyModel(nn.Module):
         return self.net2(x.to('cuda:1'))
 ```
 
-对于模型太大而无法放入单个 GPU 的情况，上述实现解决了该问题。 但是，您可能已经注意到，如果您的模型合适，它将比在单个 GPU 上运行它要慢。 这是因为在任何时间点，两个 GPU 中只有一个在工作，而另一个在那儿什么也没做。 由于中间输出需要在`layer2`和`layer3`之间从`cuda:0`复制到`cuda:1`，因此性能进一步恶化。
+对于模型太大而无法放入单个 GPU 的情况，上述实现解决了该问题。 但是，分析原理的时候可能已经注意到，如果模型单个GPU可以载入，它将比在单个 GPU 上运行它要慢。 这是因为在任何时间点，两个 GPU 中只有一个在工作，而另一个在那儿什么也没做。 由于中间输出需要在`layer2`和`layer3`之间从`cuda:0`复制到`cuda:1`，因此性能进一步恶化。
 
 除此之外，还有通过异步方式构建流水线的手段加速，这个Trick比较精巧和优雅，思想可以学习一下
 

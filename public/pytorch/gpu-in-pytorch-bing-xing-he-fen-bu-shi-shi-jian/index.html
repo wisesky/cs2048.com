@@ -490,7 +490,8 @@
                 <p>　　虽然还没有机会用到CUDA集群，但是前段时间对协程和并行化的研究，让我忍不住想要探索一下如何在多个GPU下利用Pytorch加快训练的实践方法，算是为之后并行训练优化一个理论参考吧！</p>
 <p>　　Pytorch 大体上有3种实现并行的接口（另外还有一种不利用接口的拼接模型的技巧，之后再单独讨论），分别是：torch.multiprocessing, nn.DataParallel, nn.parallel.DistributedDataParallel，如果是是GPU多卡运行，最佳实践是 nn.parallle.DistributedDataParallel,官方文档 <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/notes/cuda.html#cuda-nn-ddp-instead">CUDA SEMANTIC</a> 是这么描述的：</p>
 <blockquote>
-<h3 id="Use-nn-parallel-DistributedDataParallel-instead-of-multiprocessing-or-nn-DataParallel"><a href="#Use-nn-parallel-DistributedDataParallel-instead-of-multiprocessing-or-nn-DataParallel" class="headerlink" title="Use nn.parallel.DistributedDataParallel instead of multiprocessing or nn.DataParallel"></a>Use nn.parallel.DistributedDataParallel instead of multiprocessing or nn.DataParallel</h3><p>Most use cases involving batched inputs and multiple GPUs should default to using <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html#torch.nn.parallel.DistributedDataParallel"><code>DistributedDataParallel</code></a> to utilize more than one GPU.</p>
+<p><strong>Use nn.parallel.DistributedDataParallel instead of multiprocessing or nn.DataParallel</strong></p>
+<p>Most use cases involving batched inputs and multiple GPUs should default to using <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html#torch.nn.parallel.DistributedDataParallel"><code>DistributedDataParallel</code></a> to utilize more than one GPU.</p>
 <p>There are significant caveats to using CUDA models with <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/multiprocessing.html#module-torch.multiprocessing"><code>multiprocessing</code></a>; unless care is taken to meet the data handling requirements exactly, it is likely that your program will have incorrect or undefined behavior.</p>
 <p>It is recommended to use <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html#torch.nn.parallel.DistributedDataParallel"><code>DistributedDataParallel</code></a>, instead of <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.DataParallel.html#torch.nn.DataParallel"><code>DataParallel</code></a> to do multi-GPU training, even if there is only a single node.</p>
 <p>The difference between <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html#torch.nn.parallel.DistributedDataParallel"><code>DistributedDataParallel</code></a> and <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.DataParallel.html#torch.nn.DataParallel"><code>DataParallel</code></a> is: <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html#torch.nn.parallel.DistributedDataParallel"><code>DistributedDataParallel</code></a> uses multiprocessing where a process is created for each GPU, while <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.DataParallel.html#torch.nn.DataParallel"><code>DataParallel</code></a> uses multithreading. By using multiprocessing, each GPU has its dedicated process, this avoids the performance overhead caused by GIL of Python interpreter.</p>
@@ -581,7 +582,7 @@ Outside<span class="token punctuation">:</span> input size torch<span class="tok
     <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
         x <span class="token operator">=</span> self<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>self<span class="token punctuation">.</span>net1<span class="token punctuation">(</span>x<span class="token punctuation">.</span>to<span class="token punctuation">(</span><span class="token string">'cuda:0'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> self<span class="token punctuation">.</span>net2<span class="token punctuation">(</span>x<span class="token punctuation">.</span>to<span class="token punctuation">(</span><span class="token string">'cuda:1'</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p>对于模型太大而无法放入单个 GPU 的情况，上述实现解决了该问题。 但是，您可能已经注意到，如果您的模型合适，它将比在单个 GPU 上运行它要慢。 这是因为在任何时间点，两个 GPU 中只有一个在工作，而另一个在那儿什么也没做。 由于中间输出需要在<code>layer2</code>和<code>layer3</code>之间从<code>cuda:0</code>复制到<code>cuda:1</code>，因此性能进一步恶化。</p>
+<p>对于模型太大而无法放入单个 GPU 的情况，上述实现解决了该问题。 但是，分析原理的时候可能已经注意到，如果模型单个GPU可以载入，它将比在单个 GPU 上运行它要慢。 这是因为在任何时间点，两个 GPU 中只有一个在工作，而另一个在那儿什么也没做。 由于中间输出需要在<code>layer2</code>和<code>layer3</code>之间从<code>cuda:0</code>复制到<code>cuda:1</code>，因此性能进一步恶化。</p>
 <p>除此之外，还有通过异步方式构建流水线的手段加速，这个Trick比较精巧和优雅，思想可以学习一下</p>
 <pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">PipelineParallelResNet50</span><span class="token punctuation">(</span>ModelParallelResNet50<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> split_size<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -857,18 +858,17 @@ plot<span class="token punctuation">(</span><span class="token punctuation">[</s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/">
+                <a href="/sui-bi/leetcode-1-100-shua-ti-you-gan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="GPU in Pytorch  并行和分布式实践">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="LeetCode 1-100 刷题有感">
                         
-                        <span class="card-title">GPU in Pytorch  并行和分布式实践</span>
+                        <span class="card-title">LeetCode 1-100 刷题有感</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -878,35 +878,34 @@ plot<span class="token punctuation">(</span><span class="token punctuation">[</s
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-07
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Pytorch/" class="post-category">
-                                    Pytorch
+                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
+                                    随笔
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Pytorch/">
-                        <span class="chip bg-color">Pytorch</span>
+                    <a href="/tags/%E9%9A%8F%E7%AC%94/">
+                        <span class="chip bg-color">随笔</span>
                     </a>
                     
-                    <a href="/tags/CUDA/">
-                        <span class="chip bg-color">CUDA</span>
+                    <a href="/tags/LeetCode/">
+                        <span class="chip bg-color">LeetCode</span>
                     </a>
                     
-                    <a href="/tags/GPU/">
-                        <span class="chip bg-color">GPU</span>
+                    <a href="/tags/Algorithms/">
+                        <span class="chip bg-color">Algorithms</span>
                     </a>
                     
                 </div>
