@@ -618,7 +618,7 @@ plot<span class="token punctuation">(</span><span class="token punctuation">[</s
      <span class="token punctuation">[</span><span class="token string">'Model Parallel'</span><span class="token punctuation">,</span> <span class="token string">'Single GPU'</span><span class="token punctuation">,</span> <span class="token string">'Pipelining Model Parallel'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
      <span class="token string">'mp_vs_rn_vs_pp.png'</span><span class="token punctuation">)</span></code></pre>
 <p>在2 GPUs上能有50%的提速，离100%还是有点差距，加速对比如下</p>
-<p>###<img src="/Users/franklin/Documents/Writing/cs2048.com/source/_posts/GPU-in-Pytorch-%E5%B9%B6%E8%A1%8C%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E8%B7%B5/1.png" alt="1"> </p>
+<p>###<img src="1.png" alt="1"> </p>
 <h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>依次是 2-GPU并行， 1-GPU运行， 2-GPU Pipelining 并行 的运行时间对比</p>
 <h3 id="nn-parallel-DistributedDataParallel"><a href="#nn-parallel-DistributedDataParallel" class="headerlink" title="nn.parallel.DistributedDataParallel"></a>nn.parallel.DistributedDataParallel</h3><p>　　基于torch.distributed 的分布式数据并行，原理和DataParallel类似，但是是跨机器和跨设备级别的数据并行，在每台机器和每台设备上复制，并且每个这样的副本处理一部分输入， 在向后传递过程中，将平均每个节点的梯度，总之，是按批处理维度分块指定设备之间的输入来并行化给定模块的应用程序。</p>
 <p><code>DistributedDataParallel</code>可以通过以下两种方式使用：</p>

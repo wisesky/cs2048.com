@@ -186,7 +186,7 @@ plot([mp_mean, rn_mean, pp_mean],
 
 在2 GPUs上能有50%的提速，离100%还是有点差距，加速对比如下
 
-###![1](/Users/franklin/Documents/Writing/cs2048.com/source/_posts/GPU-in-Pytorch-并行和分布式实践/1.png) 
+###![1](1.png) 
 
 ### 
 
