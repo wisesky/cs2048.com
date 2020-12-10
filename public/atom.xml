@@ -6,7 +6,7 @@
   <link href="http://www.cs2048.com/atom.xml" rel="self"/>
   
   <link href="http://www.cs2048.com/"/>
-  <updated>2020-12-09T10:17:52.722Z</updated>
+  <updated>2020-12-10T10:11:23.217Z</updated>
   <id>http://www.cs2048.com/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>LeetCode 115. Distinct Subsequences</title>
-    <link href="http://www.cs2048.com/uncategorized/leetcode-115-distinct-subsequences/"/>
-    <id>http://www.cs2048.com/uncategorized/leetcode-115-distinct-subsequences/</id>
+    <link href="http://www.cs2048.com/algorithms/leetcode-115-distinct-subsequences/"/>
+    <id>http://www.cs2048.com/algorithms/leetcode-115-distinct-subsequences/</id>
     <published>2020-12-09T09:52:16.000Z</published>
-    <updated>2020-12-09T10:17:52.722Z</updated>
+    <updated>2020-12-10T10:11:23.217Z</updated>
     
     
       
@@ -35,6 +35,12 @@
     
     
     
+    <category term="Algorithms" scheme="http://www.cs2048.com/categories/Algorithms/"/>
+    
+    
+    <category term="LeetCode" scheme="http://www.cs2048.com/tags/LeetCode/"/>
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/tags/Algorithms/"/>
     
   </entry>
   

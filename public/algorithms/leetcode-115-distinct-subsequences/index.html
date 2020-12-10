@@ -431,12 +431,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/LeetCode/">
+                                <span class="chip bg-color">LeetCode</span>
+                            </a>
+                        
+                            <a href="/tags/Algorithms/">
+                                <span class="chip bg-color">Algorithms</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Algorithms/" class="post-category">
+                                Algorithms
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -454,7 +471,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    504
+                    1.8k
                 </div>
                 
 
@@ -495,7 +512,176 @@ babgbag</code></pre>
 </ul>
 </blockquote>
 <p>　　或许是由于之前做过这个题目的原因，所以面对这道Hard题目，心态比较冷静；再加上100题前后的几乎都是二叉树类别的题目，自己面对链表和树类别的题目基本没碰到困难，所以DFS用的手软，到这里有点停不下来的感觉。所以此时第一想法就想到用DFS，虽然预感对于字符串匹配类别的题目，DFS肯定会出现性能问题，但是作为验证算法思想的先导思路，还是打算先实现出来再看，毕竟用DFS写代码，代码真的很短，AC的时候更是有种 吊炸天的 爽快感；结果还是差一点AC；其次，可能是之前做过的原因，虽然第一时间没写出dp递推公式，但是写出了递推矩阵，演算了一番，没想到居然是对的，很容易的转换成了算法代码，结果干净利落的AC了，甚至比之前的AC的时候还要快一倍以上。虽然这不是自己第一次独立解决Hard题目，但是这题没有借鉴之前的代码，而且从构思算法道实践成功基本没遇到什么障碍，还是值得自己兴奋一阵子了。</p>
-<h3 id="解法一：DFS"><a href="#解法一：DFS" class="headerlink" title="解法一：DFS"></a>解法一：DFS</h3><p>　　</p>
+<h3 id="解法一：DFS"><a href="#解法一：DFS" class="headerlink" title="解法一：DFS"></a>解法一：DFS</h3><p>　　此题如果要用递归的方法，那么就可以从最简单的字符串匹配入手，就是s和t都是单字符，直接就可以快速返回结果，这就可以精简成3种情况：</p>
+<ol>
+<li>s == ‘’ 即待匹配的模式t还没有消耗完，就直接没有s可供匹配了，返回0</li>
+<li>t == ‘’ 即待匹配的模式t消耗完，返回1</li>
+<li>s==t 直接返回1</li>
+<li>递归处理</li>
+</ol>
+<p>　　接下来，就开始要做递推式的处理，t的首字符t[0]如果在s中，那么就可以进行递归处理，考虑到s中可能有多个t[0]相同的字符，就要对s和t做不同的切分处理来交给递归处理，最后把所有返回的结果sum一下，就可以了</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># DFS</span>
+    <span class="token keyword">def</span> <span class="token function">numDistinct</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> str<span class="token punctuation">,</span> t<span class="token punctuation">:</span> str<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> len<span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">1</span>
+        <span class="token keyword">if</span> len<span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">0</span>
+        <span class="token keyword">if</span> s <span class="token operator">==</span> t<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">1</span>
+
+        r <span class="token operator">=</span> <span class="token number">0</span>
+        t0 <span class="token operator">=</span> t<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        pos <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>
+        news <span class="token operator">=</span> s<span class="token punctuation">[</span>pos<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token punctuation">]</span>
+        <span class="token keyword">while</span> t0 <span class="token keyword">in</span> news<span class="token punctuation">:</span>
+            pos <span class="token operator">=</span> news<span class="token punctuation">.</span>index<span class="token punctuation">(</span>t0<span class="token punctuation">)</span>
+            news <span class="token operator">=</span> news<span class="token punctuation">[</span>pos<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token punctuation">]</span>
+            r <span class="token operator">+=</span> self<span class="token punctuation">.</span>numDistinct<span class="token punctuation">(</span>news<span class="token punctuation">,</span> t<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> r</code></pre>
+<p>测试用例通过率：106/116， 离AC只有一步之遥，目测发现是超长的字符串s导致递归性能急剧下降，那么可以确定的是算法思路是没有问题的。接着开始转入DP的算法构思。</p>
+<h3 id="解法二：-动态规划-Dynamic-Programming-DP"><a href="#解法二：-动态规划-Dynamic-Programming-DP" class="headerlink" title="解法二： 动态规划 Dynamic Programming (DP)"></a>解法二： 动态规划 Dynamic Programming (DP)</h3><p>　　由于之前做过这个题，所以非常确定有一个DP算法存在，但是对于这个DP是怎么构建最优子结构的，完全想不起来了。所以，接下来就完全需要自己朝着DP思路构思DP矩阵了。</p>
+<p>　　字符串匹配的DP算法有一个非常有名的最长公共子序列(LCS)问题，几乎所有讲解DP的教材都拿这个题目做过示例分析，当时自己对这个递推式还是很不理解，为什么$dp[i][j]$在$s[i]!=t[j]$的时候，可以由$dp[i-1][j]$和$dp[i][j-1]$构成？当初还是理解了好久，才想明白。或许是当初对这个分解的情况思索的很久的原因，所以但凡遇到DP算法的，都会潜意识的往LCS靠；而此题恰好也是字符串匹配的题目，思路方向似乎没什么太大问题。</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">r</th>
+<th align="center">a</th>
+<th align="center">b</th>
+<th align="center">b</th>
+<th align="center">b</th>
+<th align="center">i</th>
+<th align="center">t</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">r</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">a</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">b</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">b</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">i</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">3</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">t</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">3</td>
+</tr>
+</tbody></table>
+<p>对$dp[i][j]$的定义开始还是不太明确，最初以为是本层i和上层i-1的累加，最后发现不对，最后从意义上的分析，最终确定是来自上一层之前所有可能性的累加，因为$dp[i-1][ :j]$中累加表示上层匹配结束之后，所有可供下层提供入口的数量，而且这个入口只有在$s[i]==t[j]$的时候，才有效，否则直接置为0，最后的返回的结果应该是$sum(dp[-1])$。</p>
+<p>最关键的步骤就是正确性验证，在提供的2个测试用例都无误之后，基本就可以开始步入写代码的过程了.</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">b</th>
+<th align="center">a</th>
+<th align="center">b</th>
+<th align="center">g</th>
+<th align="center">b</th>
+<th align="center">a</th>
+<th align="center">g</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">b</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">a</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">3</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">g</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">4</td>
+</tr>
+</tbody></table>
+<p>由于只需要上层的数据就可以计算本层， 但是并不是完全copy上层的数据，所以没办法用dp常用的边更新数据边覆盖的方式复用同一个List， 所以这里采用了2个List交替使用的方式来逐层更新</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># dp</span>
+    <span class="token keyword">def</span> <span class="token function">numDistinct</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        dp <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span> len<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i<span class="token punctuation">,</span>char <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> char <span class="token operator">==</span> t<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+
+        <span class="token keyword">for</span> char <span class="token keyword">in</span> t<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token punctuation">]</span><span class="token punctuation">:</span>
+            count <span class="token operator">=</span> <span class="token number">0</span>
+            dp_next <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> len<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> char<span class="token punctuation">:</span>
+                    dp_next<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> count
+                count <span class="token operator">+=</span> dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+            dp <span class="token operator">=</span> dp_next
+
+        <span class="token keyword">return</span> sum<span class="token punctuation">(</span>dp<span class="token punctuation">)</span></code></pre>
+<p>36ms AC， 比之前AC的DP还快上一倍，这是最初没想到的。</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>　　这次顺利AC的主要原因还是思路方向的偶然正确性，这跟学生时代做数学题似乎有着异曲同工的地方，就是尝试的手段恰好是对的。如果尝试的手段恰好不对呢？无论是实践还是算法，我领悟到的结论是，多思考问题和事物的本质，才是快速接近正确答案有效的方式。上面的过程也可以发现，在有了正确的递归矩阵的引导下，代码的实现其实很轻松；反倒是，没抓住问题本质的随意和胡乱的尝试，才是导致心态急躁的根源，因为这种胡乱的尝试，似乎给了一种正在接近解决问题的错觉，虽然积累一点关于问题的经验，但是很多时候似乎只是积累无意义的失败经验而已；在适当的失败经验的基础上，更多的思考原因，在发现问题和原因的基础上的尝试，才是有价值和意义的，也才是最有效率的方式。</p>
 
             </div>
             <hr/>
@@ -521,7 +707,7 @@ babgbag</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.cs2048.com/uncategorized/leetcode-115-distinct-subsequences/">http://www.cs2048.com/uncategorized/leetcode-115-distinct-subsequences/</a>
+                    <a href="http://www.cs2048.com/algorithms/leetcode-115-distinct-subsequences/">http://www.cs2048.com/algorithms/leetcode-115-distinct-subsequences/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -558,7 +744,15 @@ babgbag</code></pre>
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/LeetCode/">
+                                    <span class="chip bg-color">LeetCode</span>
+                                </a>
+                            
+                                <a href="/tags/Algorithms/">
+                                    <span class="chip bg-color">Algorithms</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -729,7 +923,7 @@ babgbag</code></pre>
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/uncategorized/leetcode-115-distinct-subsequences/">
+                <a href="/algorithms/leetcode-115-distinct-subsequences/">
                     <div class="card-image">
                         
                         
@@ -750,13 +944,29 @@ babgbag</code></pre>
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Franklin Chen
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Algorithms/" class="post-category">
+                                    Algorithms
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/LeetCode/">
+                        <span class="chip bg-color">LeetCode</span>
+                    </a>
+                    
+                    <a href="/tags/Algorithms/">
+                        <span class="chip bg-color">Algorithms</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
