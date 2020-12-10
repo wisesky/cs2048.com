@@ -3,11 +3,11 @@
   <title>Franklin Chen</title>
   
   <subtitle>Franklin Chen</subtitle>
-  <link href="http://www.qinshoubro.com/atom.xml" rel="self"/>
+  <link href="http://www.cs2048.com/atom.xml" rel="self"/>
   
-  <link href="http://www.qinshoubro.com/"/>
-  <updated>2020-12-07T10:03:07.163Z</updated>
-  <id>http://www.qinshoubro.com/</id>
+  <link href="http://www.cs2048.com/"/>
+  <updated>2020-12-09T10:17:52.722Z</updated>
+  <id>http://www.cs2048.com/</id>
   
   <author>
     <name>Franklin Chen</name>
@@ -17,11 +17,33 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>LeetCode 115. Distinct Subsequences</title>
+    <link href="http://www.cs2048.com/uncategorized/leetcode-115-distinct-subsequences/"/>
+    <id>http://www.cs2048.com/uncategorized/leetcode-115-distinct-subsequences/</id>
+    <published>2020-12-09T09:52:16.000Z</published>
+    <updated>2020-12-09T10:17:52.722Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Given two strings &lt;code&gt;s&lt;/code&gt; and &lt;code&gt;t&lt;/code&gt;, return &lt;em&gt;the number of distinct subsequences of &lt;code&gt;s&lt;/code&gt; which</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>LeetCode 1-100 刷题有感</title>
-    <link href="http://www.qinshoubro.com/sui-bi/leetcode-1-100-shua-ti-you-gan/"/>
-    <id>http://www.qinshoubro.com/sui-bi/leetcode-1-100-shua-ti-you-gan/</id>
+    <link href="http://www.cs2048.com/sui-bi/leetcode-1-100-shua-ti-you-gan/"/>
+    <id>http://www.cs2048.com/sui-bi/leetcode-1-100-shua-ti-you-gan/</id>
     <published>2020-12-07T03:06:05.000Z</published>
-    <updated>2020-12-07T10:03:07.163Z</updated>
+    <updated>2020-12-10T08:01:47.037Z</updated>
     
     
       
@@ -34,23 +56,23 @@
     
     
     
-    <category term="随笔" scheme="http://www.qinshoubro.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="http://www.cs2048.com/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-    <category term="随笔" scheme="http://www.qinshoubro.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="http://www.cs2048.com/tags/%E9%9A%8F%E7%AC%94/"/>
     
-    <category term="LeetCode" scheme="http://www.qinshoubro.com/tags/LeetCode/"/>
+    <category term="LeetCode" scheme="http://www.cs2048.com/tags/LeetCode/"/>
     
-    <category term="Algorithms" scheme="http://www.qinshoubro.com/tags/Algorithms/"/>
+    <category term="Algorithms" scheme="http://www.cs2048.com/tags/Algorithms/"/>
     
   </entry>
   
   <entry>
     <title>GPU in Pytorch  并行和分布式实践</title>
-    <link href="http://www.qinshoubro.com/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/"/>
-    <id>http://www.qinshoubro.com/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/</id>
+    <link href="http://www.cs2048.com/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/"/>
+    <id>http://www.cs2048.com/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/</id>
     <published>2020-11-25T07:07:07.000Z</published>
-    <updated>2020-11-27T02:25:58.605Z</updated>
+    <updated>2020-12-10T08:02:04.289Z</updated>
     
     
       
@@ -64,23 +86,23 @@
     
     
     
-    <category term="Pytorch" scheme="http://www.qinshoubro.com/categories/Pytorch/"/>
+    <category term="Pytorch" scheme="http://www.cs2048.com/categories/Pytorch/"/>
     
     
-    <category term="Pytorch" scheme="http://www.qinshoubro.com/tags/Pytorch/"/>
+    <category term="Pytorch" scheme="http://www.cs2048.com/tags/Pytorch/"/>
     
-    <category term="CUDA" scheme="http://www.qinshoubro.com/tags/CUDA/"/>
+    <category term="CUDA" scheme="http://www.cs2048.com/tags/CUDA/"/>
     
-    <category term="GPU" scheme="http://www.qinshoubro.com/tags/GPU/"/>
+    <category term="GPU" scheme="http://www.cs2048.com/tags/GPU/"/>
     
   </entry>
   
   <entry>
     <title>同步和异步编程(如何并行写同一个日志文件实践)</title>
-    <link href="http://www.qinshoubro.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/"/>
-    <id>http://www.qinshoubro.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/</id>
+    <link href="http://www.cs2048.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/"/>
+    <id>http://www.cs2048.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/</id>
     <published>2020-11-23T08:27:20.000Z</published>
-    <updated>2020-11-25T06:54:04.063Z</updated>
+    <updated>2020-12-10T08:01:42.373Z</updated>
     
     
       
@@ -93,21 +115,21 @@
     
     
     
-    <category term="Algorithms" scheme="http://www.qinshoubro.com/categories/Algorithms/"/>
+    <category term="Algorithms" scheme="http://www.cs2048.com/categories/Algorithms/"/>
     
     
-    <category term="Algorithms" scheme="http://www.qinshoubro.com/tags/Algorithms/"/>
+    <category term="Algorithms" scheme="http://www.cs2048.com/tags/Algorithms/"/>
     
-    <category term="OS" scheme="http://www.qinshoubro.com/tags/OS/"/>
+    <category term="OS" scheme="http://www.cs2048.com/tags/OS/"/>
     
   </entry>
   
   <entry>
     <title>LeetCode 33. Search in Rotated Sorted Array</title>
-    <link href="http://www.qinshoubro.com/algorithm/leetcode-33-search-in-rotated-sorted-array/"/>
-    <id>http://www.qinshoubro.com/algorithm/leetcode-33-search-in-rotated-sorted-array/</id>
+    <link href="http://www.cs2048.com/algorithm/leetcode-33-search-in-rotated-sorted-array/"/>
+    <id>http://www.cs2048.com/algorithm/leetcode-33-search-in-rotated-sorted-array/</id>
     <published>2020-11-17T08:19:58.000Z</published>
-    <updated>2020-11-25T06:18:15.193Z</updated>
+    <updated>2020-12-10T08:01:36.687Z</updated>
     
     
       
@@ -120,21 +142,21 @@
     
     
     
-    <category term="Algorithm" scheme="http://www.qinshoubro.com/categories/Algorithm/"/>
+    <category term="Algorithm" scheme="http://www.cs2048.com/categories/Algorithm/"/>
     
     
-    <category term="Algorithm" scheme="http://www.qinshoubro.com/tags/Algorithm/"/>
+    <category term="Algorithm" scheme="http://www.cs2048.com/tags/Algorithm/"/>
     
-    <category term="LeetCode" scheme="http://www.qinshoubro.com/tags/LeetCode/"/>
+    <category term="LeetCode" scheme="http://www.cs2048.com/tags/LeetCode/"/>
     
   </entry>
   
   <entry>
     <title>记ubuntu重启引起的故障排查</title>
-    <link href="http://www.qinshoubro.com/yun-wei/ji-ubuntu-chong-qi-yin-qi-de-gu-zhang-pai-cha/"/>
-    <id>http://www.qinshoubro.com/yun-wei/ji-ubuntu-chong-qi-yin-qi-de-gu-zhang-pai-cha/</id>
+    <link href="http://www.cs2048.com/yun-wei/ji-ubuntu-chong-qi-yin-qi-de-gu-zhang-pai-cha/"/>
+    <id>http://www.cs2048.com/yun-wei/ji-ubuntu-chong-qi-yin-qi-de-gu-zhang-pai-cha/</id>
     <published>2020-11-04T07:25:29.000Z</published>
-    <updated>2020-11-25T06:17:43.862Z</updated>
+    <updated>2020-12-10T08:01:27.729Z</updated>
     
     
       
@@ -147,23 +169,23 @@
     
     
     
-    <category term="运维" scheme="http://www.qinshoubro.com/categories/%E8%BF%90%E7%BB%B4/"/>
+    <category term="运维" scheme="http://www.cs2048.com/categories/%E8%BF%90%E7%BB%B4/"/>
     
     
-    <category term="ubuntu" scheme="http://www.qinshoubro.com/tags/ubuntu/"/>
+    <category term="ubuntu" scheme="http://www.cs2048.com/tags/ubuntu/"/>
     
-    <category term="故障排查" scheme="http://www.qinshoubro.com/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/"/>
+    <category term="故障排查" scheme="http://www.cs2048.com/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/"/>
     
-    <category term="linux内核" scheme="http://www.qinshoubro.com/tags/linux%E5%86%85%E6%A0%B8/"/>
+    <category term="linux内核" scheme="http://www.cs2048.com/tags/linux%E5%86%85%E6%A0%B8/"/>
     
-    <category term="grub" scheme="http://www.qinshoubro.com/tags/grub/"/>
+    <category term="grub" scheme="http://www.cs2048.com/tags/grub/"/>
     
   </entry>
   
   <entry>
     <title>改变与懒惰：主观能动性讨论</title>
-    <link href="http://www.qinshoubro.com/sui-bi/gai-bian-yu-lan-duo/"/>
-    <id>http://www.qinshoubro.com/sui-bi/gai-bian-yu-lan-duo/</id>
+    <link href="http://www.cs2048.com/sui-bi/gai-bian-yu-lan-duo/"/>
+    <id>http://www.cs2048.com/sui-bi/gai-bian-yu-lan-duo/</id>
     <published>2020-10-27T06:52:29.000Z</published>
     <updated>2020-10-28T09:57:17.910Z</updated>
     
@@ -178,17 +200,17 @@
     
     
     
-    <category term="随笔" scheme="http://www.qinshoubro.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="http://www.cs2048.com/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-    <category term="随笔" scheme="http://www.qinshoubro.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="http://www.cs2048.com/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
   <entry>
     <title>为什么要写博客？</title>
-    <link href="http://www.qinshoubro.com/sui-bi/my-first-blog/"/>
-    <id>http://www.qinshoubro.com/sui-bi/my-first-blog/</id>
+    <link href="http://www.cs2048.com/sui-bi/my-first-blog/"/>
+    <id>http://www.cs2048.com/sui-bi/my-first-blog/</id>
     <published>2020-10-13T09:00:43.000Z</published>
     <updated>2020-11-25T06:26:55.417Z</updated>
     
@@ -203,18 +225,18 @@
     
     
     
-    <category term="随笔" scheme="http://www.qinshoubro.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="http://www.cs2048.com/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-    <category term="随笔" scheme="http://www.qinshoubro.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="http://www.cs2048.com/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://www.qinshoubro.com/test/hello-world/"/>
-    <id>http://www.qinshoubro.com/test/hello-world/</id>
-    <published>2020-10-13T06:01:04.775Z</published>
+    <link href="http://www.cs2048.com/test/hello-world/"/>
+    <id>http://www.cs2048.com/test/hello-world/</id>
+    <published>2020-10-13T08:32:14.454Z</published>
     <updated>2020-10-13T08:32:14.454Z</updated>
     
     
@@ -228,10 +250,10 @@
     
     
     
-    <category term="test" scheme="http://www.qinshoubro.com/categories/test/"/>
+    <category term="test" scheme="http://www.cs2048.com/categories/test/"/>
     
     
-    <category term="test" scheme="http://www.qinshoubro.com/tags/test/"/>
+    <category term="test" scheme="http://www.cs2048.com/tags/test/"/>
     
   </entry>
   

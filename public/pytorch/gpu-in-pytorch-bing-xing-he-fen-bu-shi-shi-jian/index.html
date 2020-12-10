@@ -475,7 +475,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    3.3k
                 </div>
                 
 
@@ -497,7 +497,7 @@
 <p>The difference between <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html#torch.nn.parallel.DistributedDataParallel"><code>DistributedDataParallel</code></a> and <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.DataParallel.html#torch.nn.DataParallel"><code>DataParallel</code></a> is: <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html#torch.nn.parallel.DistributedDataParallel"><code>DistributedDataParallel</code></a> uses multiprocessing where a process is created for each GPU, while <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.DataParallel.html#torch.nn.DataParallel"><code>DataParallel</code></a> uses multithreading. By using multiprocessing, each GPU has its dedicated process, this avoids the performance overhead caused by GIL of Python interpreter.</p>
 <p>If you use <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html#torch.nn.parallel.DistributedDataParallel"><code>DistributedDataParallel</code></a>, you could use torch.distributed.launch utility to launch your program, see <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/distributed.html#distributed-launch">Third-party backends</a>.</p>
 </blockquote>
-<h3 id="torch-multiprocessing"><a href="#torch-multiprocessing" class="headerlink" title="torch.multiprocessing"></a>torch.multiprocessing</h3><p>　　torch.multiprocessing 是 Python下 multiprocessing 的替代品，接口基本一致，并根据情况进行扩张，建议使用 python: multiprocessing.Queue 在进程中传递Pytorch对象。除此之外，还有很多坑，相见官方笔记 <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/notes/multiprocessing.html">MULTIPROCESSING BEST PRACTICES</a>, <a target="_blank" rel="noopener" href="https://pytorch.apachecn.org/docs/1.4/64.html">并行处理最佳实践</a></p>
+<h3 id="torch-multiprocessing"><a href="#torch-multiprocessing" class="headerlink" title="torch.multiprocessing"></a>torch.multiprocessing</h3><p>　　torch.multiprocessing 是 Python下 multiprocessing 的替代品，接口基本一致，并根据情况进行扩张，建议使用 python: multiprocessing.Queue 在进程中传递Pytorch对象。除此之外，还有很多坑，详见官方笔记 <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/notes/multiprocessing.html">MULTIPROCESSING BEST PRACTICES</a>, <a target="_blank" rel="noopener" href="https://pytorch.apachecn.org/docs/1.4/64.html">并行处理最佳实践</a></p>
 <pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> torch<span class="token punctuation">.</span>multiprocessing <span class="token keyword">as</span> mp
 <span class="token keyword">from</span> model <span class="token keyword">import</span> MyModel
 
@@ -521,7 +521,7 @@
     <span class="token keyword">for</span> p <span class="token keyword">in</span> processes<span class="token punctuation">:</span>
         p<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 <h3 id="DataParallel"><a href="#DataParallel" class="headerlink" title="DataParallel"></a>DataParallel</h3><p>　　DataParallel原理是，把model 副本copy到所有GPU上，其中每个GPU消耗数据的不同分区，相当于SIMD，把数据条目根据GPU数量重新分配</p>
-<pre class=" language-python"><code class="language-python">model <span class="token operator">=</span> nn<span class="token punctuation">.</span>DataParallel<span class="token punctuation">(</span>model<span class="token punctuation">)</span></code></pre>
+<h4 id="单机DataParallel并行"><a href="#单机DataParallel并行" class="headerlink" title="单机DataParallel并行"></a>单机DataParallel并行</h4><pre class=" language-python"><code class="language-python">model <span class="token operator">=</span> nn<span class="token punctuation">.</span>DataParallel<span class="token punctuation">(</span>model<span class="token punctuation">)</span></code></pre>
 <p>　　代码验证 outside model 数据维度  和 inside model 维度</p>
 <pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Model</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token comment" spellcheck="true"># Our model</span>
@@ -568,7 +568,7 @@ Outside<span class="token punctuation">:</span> input size torch<span class="tok
     In Model<span class="token punctuation">:</span> input size torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span> output size torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 Outside<span class="token punctuation">:</span> input size torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span> output_size torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
 <p>优点是，通过消耗输入数据不同分区的方式加快训练过程，缺点是，如果单个模型太大，无法放入单个GPU，就无法运行，这时有个Trick可以把模型分段载入不同GPU，利用拼接的方式完成并行训练，该模型将单个模型拆分到不同的 GPU 上，而不是在每个 GPU 上复制整个模型(具体来说， 假设模型<code>m</code>包含 10 层：使用<code>DataParallel</code>时，每个 GPU 都具有这 10 层中每个层的副本，而当在两个 GPU 上并行使用模型时，每个 GPU 可以承载 5 层）</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> torch
+<h4 id="单机模型拼接并行"><a href="#单机模型拼接并行" class="headerlink" title="单机模型拼接并行"></a>单机模型拼接并行</h4><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> torch
 <span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn
 <span class="token keyword">import</span> torch<span class="token punctuation">.</span>optim <span class="token keyword">as</span> optim
 
@@ -584,7 +584,7 @@ Outside<span class="token punctuation">:</span> input size torch<span class="tok
         <span class="token keyword">return</span> self<span class="token punctuation">.</span>net2<span class="token punctuation">(</span>x<span class="token punctuation">.</span>to<span class="token punctuation">(</span><span class="token string">'cuda:1'</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
 <p>对于模型太大而无法放入单个 GPU 的情况，上述实现解决了该问题。 但是，分析原理的时候可能已经注意到，如果模型单个GPU可以载入，它将比在单个 GPU 上运行它要慢。 这是因为在任何时间点，两个 GPU 中只有一个在工作，而另一个在那儿什么也没做。 由于中间输出需要在<code>layer2</code>和<code>layer3</code>之间从<code>cuda:0</code>复制到<code>cuda:1</code>，因此性能进一步恶化。</p>
 <p>除此之外，还有通过异步方式构建流水线的手段加速，这个Trick比较精巧和优雅，思想可以学习一下</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">PipelineParallelResNet50</span><span class="token punctuation">(</span>ModelParallelResNet50<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<h4 id="单机Pipeline-并行"><a href="#单机Pipeline-并行" class="headerlink" title="单机Pipeline 并行"></a>单机Pipeline 并行</h4><pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">PipelineParallelResNet50</span><span class="token punctuation">(</span>ModelParallelResNet50<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> split_size<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
         super<span class="token punctuation">(</span>PipelineParallelResNet50<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
         self<span class="token punctuation">.</span>split_size <span class="token operator">=</span> split_size
@@ -617,8 +617,306 @@ plot<span class="token punctuation">(</span><span class="token punctuation">[</s
      <span class="token punctuation">[</span>mp_std<span class="token punctuation">,</span> rn_std<span class="token punctuation">,</span> pp_std<span class="token punctuation">]</span><span class="token punctuation">,</span>
      <span class="token punctuation">[</span><span class="token string">'Model Parallel'</span><span class="token punctuation">,</span> <span class="token string">'Single GPU'</span><span class="token punctuation">,</span> <span class="token string">'Pipelining Model Parallel'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
      <span class="token string">'mp_vs_rn_vs_pp.png'</span><span class="token punctuation">)</span></code></pre>
-<p>在2 GPUs上能有50%的提速，离100%还是有点差距</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3>
+<p>在2 GPUs上能有50%的提速，离100%还是有点差距，加速对比如下</p>
+<p>###<img src="/Users/franklin/Documents/Writing/cs2048.com/source/_posts/GPU-in-Pytorch-%E5%B9%B6%E8%A1%8C%E5%92%8C%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9E%E8%B7%B5/1.png" alt="1"> </p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>依次是 2-GPU并行， 1-GPU运行， 2-GPU Pipelining 并行 的运行时间对比</p>
+<h3 id="nn-parallel-DistributedDataParallel"><a href="#nn-parallel-DistributedDataParallel" class="headerlink" title="nn.parallel.DistributedDataParallel"></a>nn.parallel.DistributedDataParallel</h3><p>　　基于torch.distributed 的分布式数据并行，原理和DataParallel类似，但是是跨机器和跨设备级别的数据并行，在每台机器和每台设备上复制，并且每个这样的副本处理一部分输入， 在向后传递过程中，将平均每个节点的梯度，总之，是按批处理维度分块指定设备之间的输入来并行化给定模块的应用程序。</p>
+<p><code>DistributedDataParallel</code>可以通过以下两种方式使用：</p>
+<h4 id="单线程多GPU"><a href="#单线程多GPU" class="headerlink" title="单线程多GPU"></a>单线程多GPU</h4><pre class=" language-python"><code class="language-python">torch<span class="token punctuation">.</span>distributed<span class="token punctuation">.</span>init_process_group<span class="token punctuation">(</span>backend<span class="token operator">=</span><span class="token string">"nccl"</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># device_ids will include all GPU devices by default</span>
+model <span class="token operator">=</span> DistributedDataParallel<span class="token punctuation">(</span>model<span class="token punctuation">)</span> 
+</code></pre>
+<h4 id="多线程多GPU"><a href="#多线程多GPU" class="headerlink" title="多线程多GPU"></a>多线程多GPU</h4><p>　　强烈推荐的使用方式，在单机多GPU的情况下，单进程很容易由于GIL出现利用率不足的问题，这时候多进程就是唯一解决办法。最佳实践是，将DDP(DistributedDataParallel)配合多进程一起使用，每个GPU分配一个进程，会比torch.nn.DataParallel快得多，也是目前Pytorch最快的训练方法。</p>
+<p>使用步骤：</p>
+<ol>
+<li>在N个GPU的单机上生成N个进程，这个过程可以交给torch.distributed.launch完成</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash">python -m torch.distributed.launch --nproc_per_node<span class="token operator">=</span>n distributed_data_parallel.py</code></pre>
+<ol start="2">
+<li>在代码中绑定GPU 编号，同时并行化model</li>
+</ol>
+<pre class=" language-python"><code class="language-python">parser <span class="token operator">=</span> argparse<span class="token punctuation">.</span>ArgumentParser<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># FOR DISTRIBUTED:  Parse for the local_rank argument, which will be supplied</span>
+<span class="token comment" spellcheck="true"># automatically by torch.distributed.launch.</span>
+parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">"--local_rank"</span><span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> type<span class="token operator">=</span>int<span class="token punctuation">)</span>
+args <span class="token operator">=</span> parser<span class="token punctuation">.</span>parse_args<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># 进程内绑定 GPU rank id</span>
+torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>set_device<span class="token punctuation">(</span>args<span class="token punctuation">.</span>local_rank<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 构造model</span>
+torch<span class="token punctuation">.</span>distributed<span class="token punctuation">.</span>init_process_group<span class="token punctuation">(</span>backend<span class="token operator">=</span><span class="token string">'nccl'</span><span class="token punctuation">,</span> world_size<span class="token operator">=</span>n<span class="token punctuation">,</span> init_method<span class="token operator">=</span><span class="token string">'env://'</span><span class="token punctuation">)</span>
+model <span class="token operator">=</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>parallel<span class="token punctuation">.</span>DistributedDataParallel<span class="token punctuation">(</span>
+                                      model<span class="token punctuation">,</span>
+                                        device_ids<span class="token operator">=</span><span class="token punctuation">[</span>args<span class="token punctuation">.</span>local_rank<span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                        output_device<span class="token operator">=</span>args<span class="token punctuation">.</span>local_rank<span class="token punctuation">)</span></code></pre>
+<p>Note:</p>
+<ol>
+<li>nccl 后端是分布式训练使用的推荐的最快后端，适用于单节点和多节点分布式训练</li>
+<li>nccl同时支持混合精度分布式训练</li>
+<li>no_sync 用于禁用DDP进程之间的梯度同步，直到退出此上下文区域的第一个梯度Forward-Backward中进行梯度同步</li>
+</ol>
+<pre class=" language-python"><code class="language-python">ddp <span class="token operator">=</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>DistributedDataParallel<span class="token punctuation">(</span>model<span class="token punctuation">,</span> pg<span class="token punctuation">)</span>
+<span class="token keyword">with</span> ddp<span class="token punctuation">.</span>no_sync<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">for</span> input <span class="token keyword">in</span> inputs<span class="token punctuation">:</span>
+    ddp<span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># no synchronization, accumulate grads</span>
+ddp<span class="token punctuation">(</span>another_input<span class="token punctuation">)</span><span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># synchronize grads</span></code></pre>
+<h3 id="apex-parallel-DistributedDataParallel"><a href="#apex-parallel-DistributedDataParallel" class="headerlink" title="apex.parallel.DistributedDataParallel"></a>apex.parallel.DistributedDataParallel</h3><p>　　基本上是torch.nn.parallel.DistributedDataParallel的wrapper，同时调用的时候优化了NCCL的使用和简化了参数</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 调用的时候，注意 n &lt;= 每个节点的GPU数量 同时默认 1个GPU对应1进程</span>
+torch.distributed.launch --nproc_per_node<span class="token operator">=</span>n distributed_data_parallel.py
+<span class="token comment" spellcheck="true"># 会自动提供的参数目前已知的是:</span>
+<span class="token comment" spellcheck="true"># args.local_rank</span>
+<span class="token comment" spellcheck="true"># os.environ['WORLD_SIZE']</span>
+</code></pre>
+<p>简化的要点：</p>
+<ol>
+<li><p>model = DDP(model) 即可，无需再传递 devices_ids output_device</p>
+</li>
+<li><p>init_process_group 中的 init_method=’env://‘</p>
+<pre class=" language-python"><code class="language-python">torch<span class="token punctuation">.</span>distributed<span class="token punctuation">.</span>init_process_group<span class="token punctuation">(</span>backend<span class="token operator">=</span><span class="token string">'nccl'</span><span class="token punctuation">,</span>init_method<span class="token operator">=</span><span class="token string">'env://'</span><span class="token punctuation">)</span></code></pre>
+</li>
+</ol>
+<p>直接给出示例代码</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># distributed_data_parallel.py</span>
+<span class="token keyword">import</span> torch
+<span class="token keyword">import</span> argparse
+<span class="token keyword">import</span> os
+<span class="token keyword">from</span> apex <span class="token keyword">import</span> amp
+<span class="token comment" spellcheck="true"># FOR DISTRIBUTED: (can also use torch.nn.parallel.DistributedDataParallel instead)</span>
+<span class="token keyword">from</span> apex<span class="token punctuation">.</span>parallel <span class="token keyword">import</span> DistributedDataParallel
+
+parser <span class="token operator">=</span> argparse<span class="token punctuation">.</span>ArgumentParser<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># FOR DISTRIBUTED:  Parse for the local_rank argument, which will be supplied</span>
+<span class="token comment" spellcheck="true"># automatically by torch.distributed.launch.</span>
+parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">"--local_rank"</span><span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> type<span class="token operator">=</span>int<span class="token punctuation">)</span>
+args <span class="token operator">=</span> parser<span class="token punctuation">.</span>parse_args<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># FOR DISTRIBUTED:  If we are running under torch.distributed.launch,</span>
+<span class="token comment" spellcheck="true"># the 'WORLD_SIZE' environment variable will also be set automatically.</span>
+args<span class="token punctuation">.</span>distributed <span class="token operator">=</span> <span class="token boolean">False</span>
+<span class="token keyword">if</span> <span class="token string">'WORLD_SIZE'</span> <span class="token keyword">in</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">:</span>
+    args<span class="token punctuation">.</span>distributed <span class="token operator">=</span> int<span class="token punctuation">(</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">'WORLD_SIZE'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span>
+
+<span class="token keyword">if</span> args<span class="token punctuation">.</span>distributed<span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># FOR DISTRIBUTED:  Set the device according to local_rank.</span>
+    torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>set_device<span class="token punctuation">(</span>args<span class="token punctuation">.</span>local_rank<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># FOR DISTRIBUTED:  Initialize the backend.  torch.distributed.launch will provide</span>
+    <span class="token comment" spellcheck="true"># environment variables, and requires that you use init_method=`env://`.</span>
+    torch<span class="token punctuation">.</span>distributed<span class="token punctuation">.</span>init_process_group<span class="token punctuation">(</span>backend<span class="token operator">=</span><span class="token string">'nccl'</span><span class="token punctuation">,</span>
+                                         init_method<span class="token operator">=</span><span class="token string">'env://'</span><span class="token punctuation">)</span>
+
+torch<span class="token punctuation">.</span>backends<span class="token punctuation">.</span>cudnn<span class="token punctuation">.</span>benchmark <span class="token operator">=</span> <span class="token boolean">True</span>
+
+N<span class="token punctuation">,</span> D_in<span class="token punctuation">,</span> D_out <span class="token operator">=</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">1024</span><span class="token punctuation">,</span> <span class="token number">16</span>
+
+<span class="token comment" spellcheck="true"># Each process receives its own batch of "fake input data" and "fake target data."</span>
+<span class="token comment" spellcheck="true"># The "training loop" in each process just uses this fake batch over and over.</span>
+<span class="token comment" spellcheck="true"># https://github.com/NVIDIA/apex/tree/master/examples/imagenet provides a more realistic</span>
+<span class="token comment" spellcheck="true"># example of distributed data sampling for both training and validation.</span>
+x <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span>N<span class="token punctuation">,</span> D_in<span class="token punctuation">,</span> device<span class="token operator">=</span><span class="token string">'cuda'</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span>N<span class="token punctuation">,</span> D_out<span class="token punctuation">,</span> device<span class="token operator">=</span><span class="token string">'cuda'</span><span class="token punctuation">)</span>
+
+model <span class="token operator">=</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>D_in<span class="token punctuation">,</span> D_out<span class="token punctuation">)</span><span class="token punctuation">.</span>cuda<span class="token punctuation">(</span><span class="token punctuation">)</span>
+optimizer <span class="token operator">=</span> torch<span class="token punctuation">.</span>optim<span class="token punctuation">.</span>SGD<span class="token punctuation">(</span>model<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lr<span class="token operator">=</span><span class="token number">1e</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">,</span> optimizer <span class="token operator">=</span> amp<span class="token punctuation">.</span>initialize<span class="token punctuation">(</span>model<span class="token punctuation">,</span> optimizer<span class="token punctuation">,</span> opt_level<span class="token operator">=</span><span class="token string">"O1"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> args<span class="token punctuation">.</span>distributed<span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># FOR DISTRIBUTED:  After amp.initialize, wrap the model with</span>
+    <span class="token comment" spellcheck="true"># apex.parallel.DistributedDataParallel.</span>
+    model <span class="token operator">=</span> DistributedDataParallel<span class="token punctuation">(</span>model<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># torch.nn.parallel.DistributedDataParallel is also fine, with some added args:</span>
+    <span class="token comment" spellcheck="true"># model = torch.nn.parallel.DistributedDataParallel(model,</span>
+    <span class="token comment" spellcheck="true">#                                                   device_ids=[args.local_rank],</span>
+    <span class="token comment" spellcheck="true">#                                                   output_device=args.local_rank)</span>
+
+loss_fn <span class="token operator">=</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>MSELoss<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> t <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    y_pred <span class="token operator">=</span> model<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    loss <span class="token operator">=</span> loss_fn<span class="token punctuation">(</span>y_pred<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+    <span class="token keyword">with</span> amp<span class="token punctuation">.</span>scale_loss<span class="token punctuation">(</span>loss<span class="token punctuation">,</span> optimizer<span class="token punctuation">)</span> <span class="token keyword">as</span> scaled_loss<span class="token punctuation">:</span>
+        scaled_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> args<span class="token punctuation">.</span>local_rank <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"final loss = "</span><span class="token punctuation">,</span> loss<span class="token punctuation">)</span></code></pre>
+<p>更复杂的多精度调用见 <a target="_blank" rel="noopener" href="https://github.com/NVIDIA/apex/tree/master/examples/imagenet">mixed precision training with DDP</a></p>
+<h3 id="DDP-保存和加载检查点"><a href="#DDP-保存和加载检查点" class="headerlink" title="DDP 保存和加载检查点"></a>DDP 保存和加载检查点</h3><p>　　一般是使用torch.save 和 torch.load 来完成，但是在多进程下，优化方法是，仅在一个进程中保存，然后在其他所有进程中加载。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> os
+<span class="token keyword">import</span> tempfile
+<span class="token keyword">import</span> torch
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>distributed <span class="token keyword">as</span> dist
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>optim <span class="token keyword">as</span> optim
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>multiprocessing <span class="token keyword">as</span> mp
+
+<span class="token keyword">from</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>parallel <span class="token keyword">import</span> DistributedDataParallel <span class="token keyword">as</span> DDP
+
+<span class="token keyword">def</span> <span class="token function">demo_checkpoint</span><span class="token punctuation">(</span>rank<span class="token punctuation">,</span> world_size<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    setup<span class="token punctuation">(</span>rank<span class="token punctuation">,</span> world_size<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># setup devices for this process, rank 1 uses GPUs [0, 1, 2, 3] and</span>
+    <span class="token comment" spellcheck="true"># rank 2 uses GPUs [4, 5, 6, 7].</span>
+    n <span class="token operator">=</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>device_count<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">//</span> world_size
+    device_ids <span class="token operator">=</span> list<span class="token punctuation">(</span>range<span class="token punctuation">(</span>rank <span class="token operator">*</span> n<span class="token punctuation">,</span> <span class="token punctuation">(</span>rank <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> n<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    model <span class="token operator">=</span> ToyModel<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device_ids<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># output_device defaults to device_ids[0]</span>
+    ddp_model <span class="token operator">=</span> DDP<span class="token punctuation">(</span>model<span class="token punctuation">,</span> device_ids<span class="token operator">=</span>device_ids<span class="token punctuation">)</span>
+
+    loss_fn <span class="token operator">=</span> nn<span class="token punctuation">.</span>MSELoss<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    optimizer <span class="token operator">=</span> optim<span class="token punctuation">.</span>SGD<span class="token punctuation">(</span>ddp_model<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lr<span class="token operator">=</span><span class="token number">0.001</span><span class="token punctuation">)</span>
+
+    CHECKPOINT_PATH <span class="token operator">=</span> tempfile<span class="token punctuation">.</span>gettempdir<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"/model.checkpoint"</span>
+    <span class="token keyword">if</span> rank <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># All processes should see same parameters as they all start from same</span>
+        <span class="token comment" spellcheck="true"># random parameters and gradients are synchronized in backward passes.</span>
+        <span class="token comment" spellcheck="true"># Therefore, saving it in one process is sufficient.</span>
+        torch<span class="token punctuation">.</span>save<span class="token punctuation">(</span>ddp_model<span class="token punctuation">.</span>state_dict<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> CHECKPOINT_PATH<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># Use a barrier() to make sure that process 1 loads the model after process</span>
+    <span class="token comment" spellcheck="true"># 0 saves it.</span>
+    dist<span class="token punctuation">.</span>barrier<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># configure map_location properly</span>
+    rank0_devices <span class="token operator">=</span> <span class="token punctuation">[</span>x <span class="token operator">-</span> rank <span class="token operator">*</span> len<span class="token punctuation">(</span>device_ids<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> device_ids<span class="token punctuation">]</span>
+    device_pairs <span class="token operator">=</span> zip<span class="token punctuation">(</span>rank0_devices<span class="token punctuation">,</span> device_ids<span class="token punctuation">)</span>
+    map_location <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;'cuda:%d' % x: 'cuda:%d' % y for x, y in device_pairs&amp;#125;</span>
+    ddp_model<span class="token punctuation">.</span>load_state_dict<span class="token punctuation">(</span>
+        torch<span class="token punctuation">.</span>load<span class="token punctuation">(</span>CHECKPOINT_PATH<span class="token punctuation">,</span> map_location<span class="token operator">=</span>map_location<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    outputs <span class="token operator">=</span> ddp_model<span class="token punctuation">(</span>torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    labels <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device_ids<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    loss_fn <span class="token operator">=</span> nn<span class="token punctuation">.</span>MSELoss<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    loss_fn<span class="token punctuation">(</span>outputs<span class="token punctuation">,</span> labels<span class="token punctuation">)</span><span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># Use a barrier() to make sure that all processes have finished reading the</span>
+    <span class="token comment" spellcheck="true"># checkpoint</span>
+    dist<span class="token punctuation">.</span>barrier<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> rank <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        os<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>CHECKPOINT_PATH<span class="token punctuation">)</span>
+
+    cleanup<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<h3 id="DDP-与模型拼接并行"><a href="#DDP-与模型拼接并行" class="headerlink" title="DDP 与模型拼接并行"></a>DDP 与模型拼接并行</h3><p>　　DDP 还可以与多 GPU 模型一起使用，但是不支持进程内的复制。 您需要为每个模块副本创建一个进程，与每个进程的多个副本相比，通常可以提高性能。 当训练具有大量数据的大型模型时，DDP 包装多 GPU 模型特别有用。 使用此功能时，需要小心地实现多 GPU 模型，以避免使用硬编码的设备，因为会将不同的模型副本放置到不同的设备上。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">ToyMpModel</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> dev0<span class="token punctuation">,</span> dev1<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        super<span class="token punctuation">(</span>ToyMpModel<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>dev0 <span class="token operator">=</span> dev0
+        self<span class="token punctuation">.</span>dev1 <span class="token operator">=</span> dev1
+        self<span class="token punctuation">.</span>net1 <span class="token operator">=</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>dev0<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>relu <span class="token operator">=</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>net2 <span class="token operator">=</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>dev1<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        x <span class="token operator">=</span> x<span class="token punctuation">.</span>to<span class="token punctuation">(</span>self<span class="token punctuation">.</span>dev0<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>self<span class="token punctuation">.</span>net1<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        x <span class="token operator">=</span> x<span class="token punctuation">.</span>to<span class="token punctuation">(</span>self<span class="token punctuation">.</span>dev1<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>net2<span class="token punctuation">(</span>x<span class="token punctuation">)</span></code></pre>
+<p>将多 GPU 模型传递给 DDP 时，不得设置<code>device_ids</code>和<code>output_device</code>。 输入和输出数据将通过应用程序或模型<code>forward()</code>方法放置在适当的设备中。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">demo_model_parallel</span><span class="token punctuation">(</span>rank<span class="token punctuation">,</span> world_size<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    setup<span class="token punctuation">(</span>rank<span class="token punctuation">,</span> world_size<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># setup mp_model and devices for this process</span>
+    dev0 <span class="token operator">=</span> rank <span class="token operator">*</span> <span class="token number">2</span>
+    dev1 <span class="token operator">=</span> rank <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span>
+    mp_model <span class="token operator">=</span> ToyMpModel<span class="token punctuation">(</span>dev0<span class="token punctuation">,</span> dev1<span class="token punctuation">)</span>
+    ddp_mp_model <span class="token operator">=</span> DDP<span class="token punctuation">(</span>mp_model<span class="token punctuation">)</span>
+
+    loss_fn <span class="token operator">=</span> nn<span class="token punctuation">.</span>MSELoss<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    optimizer <span class="token operator">=</span> optim<span class="token punctuation">.</span>SGD<span class="token punctuation">(</span>ddp_mp_model<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lr<span class="token operator">=</span><span class="token number">0.001</span><span class="token punctuation">)</span>
+
+    optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># outputs will be on dev1</span>
+    outputs <span class="token operator">=</span> ddp_mp_model<span class="token punctuation">(</span>torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    labels <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>dev1<span class="token punctuation">)</span>
+    loss_fn<span class="token punctuation">(</span>outputs<span class="token punctuation">,</span> labels<span class="token punctuation">)</span><span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    cleanup<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    run_demo<span class="token punctuation">(</span>demo_basic<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    run_demo<span class="token punctuation">(</span>demo_checkpoint<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>device_count<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">8</span><span class="token punctuation">:</span>
+        run_demo<span class="token punctuation">(</span>demo_model_parallel<span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span></code></pre>
+<p>注意上述setup 是通过 torch.multiprocessing.spawn 来完成多线程启动的，所以初始化方法也需要通过setup单独来指定</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> os
+<span class="token keyword">import</span> tempfile
+<span class="token keyword">import</span> torch
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>distributed <span class="token keyword">as</span> dist
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>optim <span class="token keyword">as</span> optim
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>multiprocessing <span class="token keyword">as</span> mp
+
+<span class="token keyword">from</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>parallel <span class="token keyword">import</span> DistributedDataParallel <span class="token keyword">as</span> DDP
+
+<span class="token keyword">def</span> <span class="token function">setup</span><span class="token punctuation">(</span>rank<span class="token punctuation">,</span> world_size<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">'MASTER_ADDR'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'localhost'</span>
+    os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">'MASTER_PORT'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'12355'</span>
+
+    <span class="token comment" spellcheck="true"># initialize the process group</span>
+    dist<span class="token punctuation">.</span>init_process_group<span class="token punctuation">(</span><span class="token string">"gloo"</span><span class="token punctuation">,</span> rank<span class="token operator">=</span>rank<span class="token punctuation">,</span> world_size<span class="token operator">=</span>world_size<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># Explicitly setting seed to make sure that models created in two processes</span>
+    <span class="token comment" spellcheck="true"># start from same random weights and biases.</span>
+    torch<span class="token punctuation">.</span>manual_seed<span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">cleanup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    dist<span class="token punctuation">.</span>destroy_process_group<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ToyModel</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        super<span class="token punctuation">(</span>ToyModel<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>net1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>relu <span class="token operator">=</span> nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>net2 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>net2<span class="token punctuation">(</span>self<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>self<span class="token punctuation">.</span>net1<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">demo_basic</span><span class="token punctuation">(</span>rank<span class="token punctuation">,</span> world_size<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    setup<span class="token punctuation">(</span>rank<span class="token punctuation">,</span> world_size<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># setup devices for this process, rank 1 uses GPUs [0, 1, 2, 3] and</span>
+    <span class="token comment" spellcheck="true"># rank 2 uses GPUs [4, 5, 6, 7].</span>
+    n <span class="token operator">=</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>device_count<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">//</span> world_size
+    device_ids <span class="token operator">=</span> list<span class="token punctuation">(</span>range<span class="token punctuation">(</span>rank <span class="token operator">*</span> n<span class="token punctuation">,</span> <span class="token punctuation">(</span>rank <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> n<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># create model and move it to device_ids[0]</span>
+    model <span class="token operator">=</span> ToyModel<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device_ids<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># output_device defaults to device_ids[0]</span>
+    ddp_model <span class="token operator">=</span> DDP<span class="token punctuation">(</span>model<span class="token punctuation">,</span> device_ids<span class="token operator">=</span>device_ids<span class="token punctuation">)</span>
+
+    loss_fn <span class="token operator">=</span> nn<span class="token punctuation">.</span>MSELoss<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    optimizer <span class="token operator">=</span> optim<span class="token punctuation">.</span>SGD<span class="token punctuation">(</span>ddp_model<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lr<span class="token operator">=</span><span class="token number">0.001</span><span class="token punctuation">)</span>
+
+    optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    outputs <span class="token operator">=</span> ddp_model<span class="token punctuation">(</span>torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    labels <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device_ids<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    loss_fn<span class="token punctuation">(</span>outputs<span class="token punctuation">,</span> labels<span class="token punctuation">)</span><span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    cleanup<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">run_demo</span><span class="token punctuation">(</span>demo_fn<span class="token punctuation">,</span> world_size<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    mp<span class="token punctuation">.</span>spawn<span class="token punctuation">(</span>demo_fn<span class="token punctuation">,</span>
+             args<span class="token operator">=</span><span class="token punctuation">(</span>world_size<span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+             nprocs<span class="token operator">=</span>world_size<span class="token punctuation">,</span>
+             join<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></code></pre>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>　　至此基本分析完所有Pytorch下的多GPU使用技巧，大体方案还是利用多进程的方式来规避GIL来提升性能，只需要用DDP 来包装model ，同时进行分布式对应的初始化，然后多进程启动即可加速训练，基本没有大的变动。</p>
+<p>References:</p>
+<p><a target="_blank" rel="noopener" href="https://pytorch.apachecn.org/docs/1.4/75.html">torch.nn</a></p>
+<p><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html?highlight=distributeddataparallel#torch.nn.parallel.DistributedDataParallel">DistributedDataParallel API</a></p>
+<p><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/notes/cuda.html#cuda-nn-ddp-instead">CUDA Semantics</a></p>
+<p><a target="_blank" rel="noopener" href="https://pytorch.apachecn.org/docs/1.4/34.html">分布式数据并行入门</a></p>
+<p><a target="_blank" rel="noopener" href="https://pytorch.apachecn.org/docs/1.4/35.html">用Pytorch编写分布式应用程序</a></p>
+<p><a target="_blank" rel="noopener" href="https://nvidia.github.io/apex/parallel.html">apex.parallel</a></p>
+
             </div>
             <hr/>
 
@@ -643,7 +941,7 @@ plot<span class="token punctuation">(</span><span class="token punctuation">[</s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.qinshoubro.com/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/">http://www.qinshoubro.com/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/</a>
+                    <a href="http://www.cs2048.com/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/">http://www.cs2048.com/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/</a>
                 </span>
             </div>
             <div class="reprint__notice">

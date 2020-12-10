@@ -2,7 +2,7 @@
 title: LeetCode 1-100 刷题有感
 toc: true
 mathjax: true
-top: true
+top: false
 cover: true
 date: 2020-12-07 11:06:05
 updated:

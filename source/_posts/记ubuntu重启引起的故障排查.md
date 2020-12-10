@@ -2,7 +2,7 @@
 title: 记ubuntu重启引起的故障排查
 toc: true
 mathjax: true
-top: true
+top: false
 cover: true
 date: 2020-11-04 15:25:29
 categories: 运维

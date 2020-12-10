@@ -9,7 +9,7 @@ toc: true
 mathjax: true
 #password: 
 
-top: true
+top: false
 cover: true
 
 #img: #feature image

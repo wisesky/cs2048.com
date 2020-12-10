@@ -2,7 +2,7 @@
 title: LeetCode 33. Search in Rotated Sorted Array
 toc: true
 mathjax: true
-top: true
+top: false
 cover: true
 date: 2020-11-17 16:19:58
 updated:

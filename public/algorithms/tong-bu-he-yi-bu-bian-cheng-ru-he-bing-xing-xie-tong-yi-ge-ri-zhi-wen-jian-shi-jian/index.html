@@ -687,7 +687,7 @@ connection<span class="token punctuation">.</span>close<span class="token punctu
   <span class="token comment" spellcheck="true"># schedule consumer</span>
   consumer<span class="token operator">=</span> asyncio<span class="token punctuation">.</span>ensure_future<span class="token punctuation">(</span>consume<span class="token punctuation">(</span>queue<span class="token punctuation">)</span><span class="token punctuation">)</span>
   <span class="token keyword">await</span> producer<span class="token punctuation">(</span>queue<span class="token punctuation">,</span> n<span class="token punctuation">)</span>
-     wait until consumer processed all items
+    <span class="token comment" spellcheck="true"># wait until consumer processed all items</span>
   <span class="token keyword">await</span> queue<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
   <span class="token comment" spellcheck="true"># consumer is still awaiting item, cancel it</span>
   consumer<span class="token punctuation">.</span>cancel<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -727,7 +727,7 @@ loop<span class="token punctuation">.</span>close<span class="token punctuation"
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.qinshoubro.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/">http://www.qinshoubro.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/</a>
+                    <a href="http://www.cs2048.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/">http://www.cs2048.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
