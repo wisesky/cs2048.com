@@ -6,7 +6,7 @@
   <link href="http://www.cs2048.com/atom.xml" rel="self"/>
   
   <link href="http://www.cs2048.com/"/>
-  <updated>2020-12-10T10:11:23.217Z</updated>
+  <updated>2020-12-15T07:55:44.903Z</updated>
   <id>http://www.cs2048.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode 126. Word Ladder II</title>
+    <link href="http://www.cs2048.com/uncategorized/leetcode-126-word-ladder-ii/"/>
+    <id>http://www.cs2048.com/uncategorized/leetcode-126-word-ladder-ii/</id>
+    <published>2020-12-15T03:33:20.000Z</published>
+    <updated>2020-12-15T07:55:44.903Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Given two words (&lt;em&gt;beginWord&lt;/em&gt; and &lt;em&gt;endWord&lt;/em&gt;), and a dictionary’s word list, find all shortest transformation</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>LeetCode 115. Distinct Subsequences</title>

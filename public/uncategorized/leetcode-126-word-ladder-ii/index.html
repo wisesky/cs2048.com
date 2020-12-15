@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="LeetCode 115. Distinct Subsequences, Franklin Chen">
+    <meta name="keywords" content="LeetCode 126. Word Ladder II, Franklin Chen">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>LeetCode 115. Distinct Subsequences | Franklin Chen</title>
+    <title>LeetCode 126. Word Ladder II | Franklin Chen</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LeetCode 115. Distinct Subsequences</h1>
+                    <h1 class="description center-align post-title">LeetCode 126. Word Ladder II</h1>
                 </div>
             </div>
         </div>
@@ -431,29 +431,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/LeetCode/">
-                                <span class="chip bg-color">LeetCode</span>
-                            </a>
-                        
-                            <a href="/tags/Algorithms/">
-                                <span class="chip bg-color">Algorithms</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/Algorithms/" class="post-category">
-                                Algorithms
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -462,7 +445,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-09
+                    2020-12-15
                 </div>
                 
 
@@ -471,7 +454,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    2.5k
                 </div>
                 
 
@@ -484,204 +467,140 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>Given two strings <code>s</code> and <code>t</code>, return <em>the number of distinct subsequences of <code>s</code> which equals <code>t</code></em>.</p>
-<p>A string’s <strong>subsequence</strong> is a new string formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., <code>&quot;ACE&quot;</code> is a subsequence of <code>&quot;ABCDE&quot;</code> while <code>&quot;AEC&quot;</code> is not).</p>
-<p>It’s guaranteed the answer fits on a 32-bit signed integer.</p>
-<p><strong>Example 1:</strong></p>
-<pre><code>Input: s = &quot;rabbbit&quot;, t = &quot;rabbit&quot;
-Output: 3
-Explanation:
-As shown below, there are 3 ways you can generate &quot;rabbit&quot; from S.
-rabbbit
-rabbbit
-rabbbit</code></pre>
-<p><strong>Example 2:</strong></p>
-<pre><code>Input: s = &quot;babgbag&quot;, t = &quot;bag&quot;
-Output: 5
-Explanation:
-As shown below, there are 5 ways you can generate &quot;bag&quot; from S.
-babgbag
-babgbag
-babgbag
-babgbag
-babgbag</code></pre>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>0 &lt;= s.length, t.length &lt;= 1000</code></li>
-<li><code>s</code> and <code>t</code> consist of English letters.</li>
-</ul>
-</blockquote>
-<p>　　或许是由于之前做过这个题目的原因，所以面对这道Hard题目，心态比较冷静；再加上100题前后的几乎都是二叉树类别的题目，自己面对链表和树类别的题目基本没碰到困难，所以DFS用的手软，到这里有点停不下来的感觉。所以此时第一想法就想到用DFS，虽然预感对于字符串匹配类别的题目，DFS肯定会出现性能问题，但是作为验证算法思想的先导思路，还是打算先实现出来再看，毕竟用DFS写代码，代码真的很短，AC的时候更是有种 吊炸天的 爽快感；结果还是差一点AC；其次，可能是之前做过的原因，虽然第一时间没写出dp递推公式，但是写出了递推矩阵，演算了一番，没想到居然是对的，很容易的转换成了算法代码，结果干净利落的AC了，甚至比之前的AC的时候还要快一倍以上。虽然这不是自己第一次独立解决Hard题目，但是这题没有借鉴之前的代码，而且从构思算法道实践成功基本没遇到什么障碍，还是值得自己兴奋一阵子了。</p>
-<h3 id="解法一：DFS"><a href="#解法一：DFS" class="headerlink" title="解法一：DFS"></a>解法一：DFS</h3><p>　　此题如果要用递归的方法，那么就可以从最简单的字符串匹配入手，就是s和t都是单字符，直接就可以快速返回结果，这就可以精简成3种情况：</p>
+<p>Given two words (<em>beginWord</em> and <em>endWord</em>), and a dictionary’s word list, find all shortest transformation sequence(s) from <em>beginWord</em> to <em>endWord</em>, such that:</p>
 <ol>
-<li>s == ‘’ 即待匹配的模式t还没有消耗完，就直接没有s可供匹配了，返回0</li>
-<li>t == ‘’ 即待匹配的模式t消耗完，返回1</li>
-<li>s==t 直接返回1</li>
-<li>递归处理</li>
+<li>Only one letter can be changed at a time</li>
+<li>Each transformed word must exist in the word list. Note that <em>beginWord</em> is <em>not</em> a transformed word.</li>
 </ol>
-<p>　　接下来，就开始要做递推式的处理，t的首字符t[0]如果在s中，那么就可以进行递归处理，考虑到s中可能有多个t[0]相同的字符，就要对s和t做不同的切分处理来交给递归处理，最后把所有返回的结果sum一下，就可以了</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># DFS</span>
-    <span class="token keyword">def</span> <span class="token function">numDistinct</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> str<span class="token punctuation">,</span> t<span class="token punctuation">:</span> str<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
-        <span class="token keyword">if</span> len<span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token number">1</span>
-        <span class="token keyword">if</span> len<span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token number">0</span>
-        <span class="token keyword">if</span> s <span class="token operator">==</span> t<span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token number">1</span>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Return an empty list if there is no such transformation sequence.</li>
+<li>All words have the same length.</li>
+<li>All words contain only lowercase alphabetic characters.</li>
+<li>You may assume no duplicates in the word list.</li>
+<li>You may assume <em>beginWord</em> and <em>endWord</em> are non-empty and are not the same.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input:
+beginWord = &quot;hit&quot;,
+endWord = &quot;cog&quot;,
+wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]
 
-        r <span class="token operator">=</span> <span class="token number">0</span>
-        t0 <span class="token operator">=</span> t<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-        pos <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>
-        news <span class="token operator">=</span> s<span class="token punctuation">[</span>pos<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token punctuation">]</span>
-        <span class="token keyword">while</span> t0 <span class="token keyword">in</span> news<span class="token punctuation">:</span>
-            pos <span class="token operator">=</span> news<span class="token punctuation">.</span>index<span class="token punctuation">(</span>t0<span class="token punctuation">)</span>
-            news <span class="token operator">=</span> news<span class="token punctuation">[</span>pos<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token punctuation">]</span>
-            r <span class="token operator">+=</span> self<span class="token punctuation">.</span>numDistinct<span class="token punctuation">(</span>news<span class="token punctuation">,</span> t<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token keyword">return</span> r</code></pre>
-<p>测试用例通过率：106/116， 离AC只有一步之遥，目测发现是超长的字符串s导致递归性能急剧下降，那么可以确定的是算法思路是没有问题的。接着开始转入DP的算法构思。</p>
-<h3 id="解法二：-动态规划-Dynamic-Programming-DP"><a href="#解法二：-动态规划-Dynamic-Programming-DP" class="headerlink" title="解法二： 动态规划 Dynamic Programming (DP)"></a>解法二： 动态规划 Dynamic Programming (DP)</h3><p>　　由于之前做过这个题，所以非常确定有一个DP算法存在，但是对于这个DP是怎么构建最优子结构的，完全想不起来了。所以，接下来就完全需要自己朝着DP思路构思DP矩阵了。</p>
-<p>　　字符串匹配的DP算法有一个非常有名的最长公共子序列(LCS)问题，几乎所有讲解DP的教材都拿这个题目做过示例分析，当时自己对这个递推式还是很不理解，为什么$dp[i][j]$在$s[i]!=t[j]$的时候，可以由$dp[i-1][j]$和$dp[i][j-1]$构成？当初还是理解了好久，才想明白。或许是当初对这个分解的情况思索的很久的原因，所以但凡遇到DP算法的，都会潜意识的往LCS靠；而此题恰好也是字符串匹配的题目，思路方向似乎没什么太大问题。</p>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">r</th>
-<th align="center">a</th>
-<th align="center">b</th>
-<th align="center">b</th>
-<th align="center">b</th>
-<th align="center">i</th>
-<th align="center">t</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">r</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">a</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">b</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">b</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">2</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">i</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">3</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">t</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">3</td>
-</tr>
-</tbody></table>
-<p>对$dp[i][j]$的定义开始还是不太明确，最初以为是本层i和上层i-1的累加，最后发现不对，最后从意义上的分析，最终确定是来自上一层之前所有可能性的累加，因为$dp[i-1][ :j]$中累加表示上层匹配结束之后，所有可供下层提供入口的数量，而且这个入口只有在$s[i]==t[j]$的时候，才有效，否则直接置为0，最后的返回的结果应该是$sum(dp[-1])$。</p>
-<p>最关键的步骤就是正确性验证，在提供的2个测试用例都无误之后，基本就可以开始步入写代码的过程了.</p>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">b</th>
-<th align="center">a</th>
-<th align="center">b</th>
-<th align="center">g</th>
-<th align="center">b</th>
-<th align="center">a</th>
-<th align="center">g</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">b</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">a</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">3</td>
-<td align="center">0</td>
-</tr>
-<tr>
-<td align="center">g</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">4</td>
-</tr>
-</tbody></table>
-<p>由于只需要上层的数据就可以计算本层， 但是并不是完全copy上层的数据，所以没办法用dp常用的边更新数据边覆盖的方式复用同一个List， 所以这里采用了2个List交替使用的方式来逐层更新</p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># dp</span>
-    <span class="token keyword">def</span> <span class="token function">numDistinct</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        dp <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">*</span> len<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
-        <span class="token keyword">for</span> i<span class="token punctuation">,</span>char <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> char <span class="token operator">==</span> t<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-                dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+Output:
+[
+  [&quot;hit&quot;,&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;cog&quot;],
+  [&quot;hit&quot;,&quot;hot&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]
+]</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input:
+beginWord = &quot;hit&quot;
+endWord = &quot;cog&quot;
+wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]
 
-        <span class="token keyword">for</span> char <span class="token keyword">in</span> t<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token punctuation">]</span><span class="token punctuation">:</span>
-            count <span class="token operator">=</span> <span class="token number">0</span>
-            dp_next <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> len<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
-            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> char<span class="token punctuation">:</span>
-                    dp_next<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> count
-                count <span class="token operator">+=</span> dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
-            dp <span class="token operator">=</span> dp_next
+Output: []
 
-        <span class="token keyword">return</span> sum<span class="token punctuation">(</span>dp<span class="token punctuation">)</span></code></pre>
-<p>36ms AC， 比之前AC的DP还快上一倍，这是最初没想到的。</p>
-<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>　　这次顺利AC的主要原因还是思路方向的偶然正确性，这跟学生时代做数学题似乎有着异曲同工的地方，就是尝试的手段恰好是对的。如果尝试的手段恰好不对呢？无论是实践还是算法，我领悟到的结论是，多思考问题和事物的本质，才是快速接近正确答案有效的方式。上面的过程也可以发现，在有了正确的递归矩阵的引导下，代码的实现其实很轻松；反倒是，没抓住问题本质的随意和胡乱的尝试，才是导致心态急躁的根源，因为这种胡乱的尝试，似乎给了一种正在接近解决问题的错觉，虽然积累一点关于问题的经验，但是很多时候似乎只是积累无意义的失败经验而已；在适当的失败经验的基础上，更多的思考原因，在发现问题和原因的基础上的尝试，才是有价值和意义的，也才是最有效率的方式。</p>
+Explanation: The endWord &quot;cog&quot; is not in wordList, therefore no possible transformation</code></pre>
+</blockquote>
+<p>　　这是一道似曾相识的Hard题，却意外的卡了好几天，好在最后还是凭借自己完成的算法方案，差一点AC，TLE的程度，最后试图优化无果，搜索Discuss，发现Python高赞方案跟自己的如出一辙，只不过在最费时的状态图构建上，做了很好的优化，借助这个优化思路，也很快获得了AC，学到了很好的优化经验。</p>
+<p>　　说到似曾相识，是因为自己曾经做过的Frog Jump 也是一道Hard题，现在回想起来，那可能是自己独立实现AC的第一道Hard，这才有了后来渐渐想要不借助提示挑战Hard的勇气。虽说Frog Jump 是一道Hard，但是解题过程意外的轻松，很容易的就找到了算法方案，基本就是常规的思路，然后实现代码过程也没遇到很多问题，最后一次AC，倍感意外。彼时就有点反思道，是不是自己高估了Hard，所以被这个束缚，才一直觉得自己搞不定才没有去尝试。现在想来，可能只是因为经验不足，用于解题的算法工具不够充足才会有Hard无法突破的心理障碍，比如，Frog Jump , Jump Game 的多种变种以及这题Word Ladder 基本都跟算法（第四版）中的 确定有穷状态自动机DFA 和 不确定有穷状态自动机 NFA的解法一致，无论是最初AC，还是后来的Debug优化，基本都是围绕Pattern 构建的状态图流转即可。此题甚至都无需构建状态图，只需要寻找合适的数据结构来标记状态即可，多少跟图论算法比较相似。</p>
+<h3 id="算法思路分析"><a href="#算法思路分析" class="headerlink" title="算法思路分析"></a>算法思路分析</h3><p>　　本质上，这其实是一道图论题目，在wordList提供的图之中，搜索从beginWord 到 endWord 的最短路径，最短路径可以直接用BFS求解，因为题设只需要输出最短路径的可能值即可，所以找到终点之后，程序即可中止。</p>
+<p>　　算法上，还是延续之前的各种Jump的变种思路，难点应该还是在于实现上，毕竟这些变种题会有各种约束条件的变化导致代码上会有些许不同，这个恐怕要在写代码的时候才能意识得到。</p>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><p>　　跟DFA/NFA类似，先把wordList转化成图表达，搜索所有的有连接关系的单词对，并保存起来。</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 判断 字符串 s1 s2 是否有边连接</span>
+<span class="token keyword">def</span> <span class="token function">isPair</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s1<span class="token punctuation">,</span> s2<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    c <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span>j <span class="token keyword">in</span> zip<span class="token punctuation">(</span>s1<span class="token punctuation">,</span> s2<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> c <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token keyword">if</span> i <span class="token operator">!=</span> j<span class="token punctuation">:</span>
+            c <span class="token operator">+=</span> <span class="token number">1</span>
+    <span class="token keyword">return</span> c <span class="token operator">==</span> <span class="token number">1</span>
+
+<span class="token comment" spellcheck="true"># word 在wordList 搜索所有可能的边</span>
+<span class="token keyword">def</span> <span class="token function">constructidx</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> word<span class="token punctuation">,</span> wordList<span class="token punctuation">,</span> des2src<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> w <span class="token keyword">in</span> wordList<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> w <span class="token operator">!=</span> word <span class="token operator">and</span> self<span class="token punctuation">.</span>isPair<span class="token punctuation">(</span>w<span class="token punctuation">,</span> word<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        des2src<span class="token punctuation">[</span>w<span class="token punctuation">]</span><span class="token punctuation">.</span>add<span class="token punctuation">(</span>word<span class="token punctuation">)</span>
+        des2src<span class="token punctuation">[</span>word<span class="token punctuation">]</span><span class="token punctuation">.</span>add<span class="token punctuation">(</span>w<span class="token punctuation">)</span>
+    <span class="token keyword">return</span></code></pre>
+<p>　　自己虽然知道在搜索连接边的isPair写的有点简单粗暴，有很大的优化空间，因为随着wordList的length增大，这个调用次数也是呈指数上升的，所以isPair的一点小优化能极大的降低TLE概率，事实也确实如此。无奈自己面对这样的基础优化，还是有点无能无力，似乎陷入了这个第一想法就得到结果的算法思路限制，无法彻底的想到新思路，最后在Discuss找到了这一段的简洁实现，利用wordList_set的在搜索阶段的改进很明显，除此之外以word为基础重新构建的方法会快一点，毕竟一个单词每一个位置都用26个字母重新替换一下，也需要$O(N)$的时间复杂度，综合起来$O(MN)$；而上述的代码可能需要$O(M^2)$， 其中M代表wordList 长度，N代表word本身的长度，这个角度来看，M较大的可能性还是比较高的。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">constructidx_1</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> word<span class="token punctuation">,</span> wordList_set<span class="token punctuation">,</span> des2src<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>word<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> char <span class="token keyword">in</span> string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">:</span>
+            tmp <span class="token operator">=</span> word<span class="token punctuation">[</span> <span class="token punctuation">:</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> char <span class="token operator">+</span> word<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token punctuation">]</span>
+            <span class="token keyword">if</span> tmp <span class="token keyword">in</span> wordList_set<span class="token punctuation">:</span>
+                des2src<span class="token punctuation">[</span>word<span class="token punctuation">]</span><span class="token punctuation">.</span>add<span class="token punctuation">(</span>tmp<span class="token punctuation">)</span>
+                <span class="token comment" spellcheck="true"># des2src[tmp].add(word)</span>
+    <span class="token keyword">return</span></code></pre>
+<p>　　也是这一段的优化最终将TLE的代码转化为AC的代码</p>
+<p>　　接下来就是BFS搜索的过程了，自己在写这段代码的时候，不知道是不是脑子抽风了，又犯了还没想好整体构思，就提枪上阵的毛病，本来是一段很基础的BFS搜索的过程，结果由于访问状态标记的代码没想明白，就随意的放置访问状态的代码，结果调试了1天，才发现问题所在，期间出现了各种匪夷所思的访问状态变化的问题，搞得自己经常莫名其妙，各种怀疑是不是其他地方出了问题。实在是有点不应该。</p>
+<p>　　可能是以前的BFS都需要遍历所有的节点之后，自动返回，所以直接采用queue的方式，queue为空自动返回即可，不需要标记BFS目前在第几层，然而此题是需要求最短路径，显然是需要采取层次遍历的方式依此进行，所以用q, q_next依此交替的方式，q是目前的遍历层次，q_next是接下来需要遍历的层次；其次，状态标记visited 的问题，此题由于要输出所有可能的最短路径，所以不仅进入q_next的新节点需要标记回溯路径，有可能q_next中的某个节点a，在此层被2个不同的节点b和c连接，此时需要把这2条路径需要标记回溯路径，之前这种可能性被自己忽略了，所以每当有多条的路径的时候，自己的代码只输出了一条，最后发现是遍历b和c的时候，b-a 使a 进入q_next, 并且visited[a] = True,标记b-a的回溯路径， 而当 c-a 需要标记回溯路径的时候，却由于visited[a]==True 被跳过了，所以才有那段不伦不类的if elif 的分支判断</p>
+<pre class=" language-python"><code class="language-python">q <span class="token operator">=</span> deque<span class="token punctuation">(</span><span class="token punctuation">)</span>
+q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>endWord<span class="token punctuation">)</span>
+visited <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;endWord:True&amp;#125;</span>
+bp <span class="token operator">=</span> defaultdict<span class="token punctuation">(</span>set<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#res = defaultdict(list)</span>
+<span class="token comment" spellcheck="true">#res[endWord] = [ [endWord] ]</span>
+<span class="token keyword">while</span> len<span class="token punctuation">(</span>q<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">:</span>
+    q_next <span class="token operator">=</span> deque<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> e <span class="token keyword">in</span> q<span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># self.constructidx(e, wordList_set, des2src)</span>
+        self<span class="token punctuation">.</span>constructidx_1<span class="token punctuation">(</span>e<span class="token punctuation">,</span> wordList_set<span class="token punctuation">,</span> des2src<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> src <span class="token keyword">in</span> des2src<span class="token punctuation">[</span>e<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token operator">not</span> visited<span class="token punctuation">.</span>get<span class="token punctuation">(</span>src<span class="token punctuation">,</span> <span class="token boolean">False</span><span class="token punctuation">)</span>  <span class="token punctuation">:</span>
+                visited<span class="token punctuation">[</span>src<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">True</span>
+                q_next<span class="token punctuation">.</span>append<span class="token punctuation">(</span>src<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">#                r = [ [src] ]if len(res[e]) == 0 else [[src] + re for re in res[e]]</span>
+<span class="token comment" spellcheck="true">#                res[src].extend(r)</span>
+                bp<span class="token punctuation">[</span>src<span class="token punctuation">]</span><span class="token punctuation">.</span>add<span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+            <span class="token keyword">elif</span> src <span class="token keyword">in</span> q_next<span class="token punctuation">:</span>
+<span class="token comment" spellcheck="true">#                r = [ [src] ]if len(res[e]) == 0 else [[src] + re for re in res[e]]</span>
+<span class="token comment" spellcheck="true">#                res[src].extend(r)</span>
+                bp<span class="token punctuation">[</span>src<span class="token punctuation">]</span><span class="token punctuation">.</span>add<span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> beginWord <span class="token keyword">in</span> q_next<span class="token punctuation">:</span>
+        <span class="token keyword">break</span>
+    wordList_set <span class="token operator">=</span> wordList_set <span class="token operator">-</span> set<span class="token punctuation">(</span>bp<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    q <span class="token operator">=</span> q_next
+
+<span class="token comment" spellcheck="true"># return res[beginWord]</span>
+res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+self<span class="token punctuation">.</span>backPath<span class="token punctuation">(</span>beginWord<span class="token punctuation">,</span> endWord<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> res<span class="token punctuation">,</span> bp<span class="token punctuation">)</span>
+<span class="token keyword">return</span> res
+
+<span class="token comment" spellcheck="true"># 回溯还原最短路径</span>
+<span class="token keyword">def</span> <span class="token function">backPath</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> start<span class="token punctuation">,</span>endWord<span class="token punctuation">,</span> r <span class="token punctuation">,</span>res<span class="token punctuation">,</span>bp<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> start <span class="token operator">==</span> endWord<span class="token punctuation">:</span>
+            res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>r<span class="token operator">+</span><span class="token punctuation">[</span>endWord<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span>
+
+        <span class="token keyword">for</span> st <span class="token keyword">in</span> bp<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>backPath<span class="token punctuation">(</span>st<span class="token punctuation">,</span> endWord<span class="token punctuation">,</span> r<span class="token operator">+</span><span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">,</span> res<span class="token punctuation">,</span> bp<span class="token punctuation">)</span>
+
+        <span class="token keyword">return</span></code></pre>
+<p>上述注释的代码，是除了回溯之外，另一种BFS中，直接保存结果的方法，当初以为是TLE的主因，最后证明其实不是，所以也是一种输出结果的方法，原理是用字典res，保存所有以word开头的可能的路径列表。</p>
+<h3 id="BFS优化"><a href="#BFS优化" class="headerlink" title="BFS优化"></a>BFS优化</h3><p>　　Discuss Python高赞解法大体BFS跟我的一致，但是我前面也分析过，我这个奇怪的if/elif分支其实还是有很大的优化空间，再则自己的状态划分不佳其实也是导致这么奇怪分支的一个原因，所以高赞的解法直接把这二者完美的统一了，窃以为也是一个简洁优雅的解法，值得学习。这里res 跟我上述的res相反，是保存以word结尾的路径列表的字典</p>
+<pre class=" language-python"><code class="language-python">q <span class="token operator">=</span> defaultdict<span class="token punctuation">(</span>list<span class="token punctuation">)</span>
+q<span class="token punctuation">[</span>beginWord<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>beginWord<span class="token punctuation">]</span><span class="token punctuation">]</span>
+wordList_set <span class="token operator">=</span> set<span class="token punctuation">(</span>wordList<span class="token punctuation">)</span>
+res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">while</span> len<span class="token punctuation">(</span>q<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+  q_next <span class="token operator">=</span> defaultdict<span class="token punctuation">(</span>list<span class="token punctuation">)</span>
+  <span class="token keyword">for</span> word <span class="token keyword">in</span> q<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> word <span class="token operator">==</span> endWord<span class="token punctuation">:</span>
+      res<span class="token punctuation">.</span>extend<span class="token punctuation">(</span>k <span class="token keyword">for</span> k <span class="token keyword">in</span> q<span class="token punctuation">[</span>word<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> len<span class="token punctuation">(</span>word<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token keyword">for</span> char <span class="token keyword">in</span> string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">:</span>
+        tmp <span class="token operator">=</span> word<span class="token punctuation">[</span> <span class="token punctuation">:</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> char <span class="token operator">+</span> word<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token punctuation">]</span>
+        <span class="token comment" spellcheck="true"># 未访问状态的列表中搜索拼接的可能的值，逐渐减少搜索空间，也是一种很好的优化方法，即逻辑上实现了 visited 状态验证，同时一层一更新减少了搜索空间，用set实现极大的优化了搜索时间</span>
+        <span class="token keyword">if</span> tmp <span class="token keyword">in</span> wordList_set<span class="token punctuation">:</span>
+                    q_next<span class="token punctuation">[</span>tmp<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>r <span class="token operator">+</span> <span class="token punctuation">[</span>tmp<span class="token punctuation">]</span> <span class="token keyword">for</span> r <span class="token keyword">in</span> q<span class="token punctuation">[</span>word<span class="token punctuation">]</span><span class="token punctuation">]</span>
+
+    <span class="token comment" spellcheck="true"># wordList_set 实际上是保存了所有未访问状态的列表，BFS的时候每一层更新一次，避免奇怪的if/elif 分支判断，是更准确的状态划分方法</span>
+    wordList_set <span class="token operator">=</span> wordList_set <span class="token operator">-</span> set<span class="token punctuation">(</span>q_next<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  q <span class="token operator">=</span> q_next
+<span class="token keyword">return</span> res</code></pre>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>　　算法优化阶段的时间复杂度分析做的不是很到位，其实似乎还是懒居多，细想一下，M和N之间的对比，似乎也能找到一点蛛丝马迹；其次，BFS状态划分没有因地制宜，还是想以套路直接鲁莽上阵，其实在发现应该按照层次BFS的时候，此题应该已经解决了，解析之后的后续优化工作还是需要多积累一些套路经验，特别是Python本来就比较慢的基础上，时间复杂度分析的重要性可能会越来越大。</p>
 
             </div>
             <hr/>
@@ -707,7 +626,7 @@ babgbag</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.cs2048.com/algorithms/leetcode-115-distinct-subsequences/">http://www.cs2048.com/algorithms/leetcode-115-distinct-subsequences/</a>
+                    <a href="http://www.cs2048.com/uncategorized/leetcode-126-word-ladder-ii/">http://www.cs2048.com/uncategorized/leetcode-126-word-ladder-ii/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -744,15 +663,7 @@ babgbag</code></pre>
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/LeetCode/">
-                                    <span class="chip bg-color">LeetCode</span>
-                                </a>
-                            
-                                <a href="/tags/Algorithms/">
-                                    <span class="chip bg-color">Algorithms</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -918,9 +829,10 @@ babgbag</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/uncategorized/leetcode-126-word-ladder-ii/">
                     <div class="card-image">
@@ -938,9 +850,9 @@ babgbag</code></pre>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -949,6 +861,7 @@ babgbag</code></pre>
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -959,13 +872,13 @@ babgbag</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/sui-bi/leetcode-1-100-shua-ti-you-gan/">
+                <a href="/algorithms/leetcode-115-distinct-subsequences/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="LeetCode 1-100 刷题有感">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="LeetCode 115. Distinct Subsequences">
                         
-                        <span class="card-title">LeetCode 1-100 刷题有感</span>
+                        <span class="card-title">LeetCode 115. Distinct Subsequences</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -976,14 +889,14 @@ babgbag</code></pre>
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
-                                    随笔
+                            <a href="/categories/Algorithms/" class="post-category">
+                                    Algorithms
                                 </a>
                             
                             
@@ -992,10 +905,6 @@ babgbag</code></pre>
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E9%9A%8F%E7%AC%94/">
-                        <span class="chip bg-color">随笔</span>
-                    </a>
                     
                     <a href="/tags/LeetCode/">
                         <span class="chip bg-color">LeetCode</span>
