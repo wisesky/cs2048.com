@@ -6,7 +6,7 @@
   <link href="http://www.cs2048.com/atom.xml" rel="self"/>
   
   <link href="http://www.cs2048.com/"/>
-  <updated>2020-12-15T07:55:44.903Z</updated>
+  <updated>2020-12-17T09:31:25.573Z</updated>
   <id>http://www.cs2048.com/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>132. Palindrome Partitioning II</title>
+    <link href="http://www.cs2048.com/algorithms/132-palindrome-partitioning-ii/"/>
+    <id>http://www.cs2048.com/algorithms/132-palindrome-partitioning-ii/</id>
+    <published>2020-12-17T03:06:04.000Z</published>
+    <updated>2020-12-17T09:31:25.573Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Given a string &lt;code&gt;s&lt;/code&gt;, partition &lt;code&gt;s&lt;/code&gt; such that every substring of the partition is a</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/categories/Algorithms/"/>
+    
+    
+    <category term="LeetCode" scheme="http://www.cs2048.com/tags/LeetCode/"/>
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/tags/Algorithms/"/>
+    
+  </entry>
+  
+  <entry>
     <title>LeetCode 126. Word Ladder II</title>
-    <link href="http://www.cs2048.com/uncategorized/leetcode-126-word-ladder-ii/"/>
-    <id>http://www.cs2048.com/uncategorized/leetcode-126-word-ladder-ii/</id>
+    <link href="http://www.cs2048.com/algorithms/leetcode-126-word-ladder-ii/"/>
+    <id>http://www.cs2048.com/algorithms/leetcode-126-word-ladder-ii/</id>
     <published>2020-12-15T03:33:20.000Z</published>
-    <updated>2020-12-15T07:55:44.903Z</updated>
+    <updated>2020-12-17T03:07:06.076Z</updated>
     
     
       
@@ -35,6 +63,12 @@
     
     
     
+    <category term="Algorithms" scheme="http://www.cs2048.com/categories/Algorithms/"/>
+    
+    
+    <category term="LeetCode" scheme="http://www.cs2048.com/tags/LeetCode/"/>
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/tags/Algorithms/"/>
     
   </entry>
   

@@ -431,12 +431,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/LeetCode/">
+                                <span class="chip bg-color">LeetCode</span>
+                            </a>
+                        
+                            <a href="/tags/Algorithms/">
+                                <span class="chip bg-color">Algorithms</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Algorithms/" class="post-category">
+                                Algorithms
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -592,11 +609,15 @@ res <span class="token operator">=</span> <span class="token punctuation">[</spa
     <span class="token keyword">for</span> i <span class="token keyword">in</span> len<span class="token punctuation">(</span>word<span class="token punctuation">)</span><span class="token punctuation">:</span>
       <span class="token keyword">for</span> char <span class="token keyword">in</span> string<span class="token punctuation">.</span>ascii_lowercase<span class="token punctuation">:</span>
         tmp <span class="token operator">=</span> word<span class="token punctuation">[</span> <span class="token punctuation">:</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> char <span class="token operator">+</span> word<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token punctuation">]</span>
-        <span class="token comment" spellcheck="true"># 未访问状态的列表中搜索拼接的可能的值，逐渐减少搜索空间，也是一种很好的优化方法，即逻辑上实现了 visited 状态验证，同时一层一更新减少了搜索空间，用set实现极大的优化了搜索时间</span>
+        <span class="token comment" spellcheck="true"># 未访问状态的列表中搜索拼接的可能的值，逐渐减少搜索空间，</span>
+        <span class="token comment" spellcheck="true">#也是一种很好的优化方法，即逻辑上实现了 visited 状态验证，</span>
+        <span class="token comment" spellcheck="true">#同时一层一更新减少了搜索空间，用set实现极大的优化了搜索时间</span>
         <span class="token keyword">if</span> tmp <span class="token keyword">in</span> wordList_set<span class="token punctuation">:</span>
                     q_next<span class="token punctuation">[</span>tmp<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>r <span class="token operator">+</span> <span class="token punctuation">[</span>tmp<span class="token punctuation">]</span> <span class="token keyword">for</span> r <span class="token keyword">in</span> q<span class="token punctuation">[</span>word<span class="token punctuation">]</span><span class="token punctuation">]</span>
 
-    <span class="token comment" spellcheck="true"># wordList_set 实际上是保存了所有未访问状态的列表，BFS的时候每一层更新一次，避免奇怪的if/elif 分支判断，是更准确的状态划分方法</span>
+    <span class="token comment" spellcheck="true"># wordList_set 实际上是保存了所有未访问状态的列表，</span>
+  <span class="token comment" spellcheck="true">#BFS的时候每一层更新一次，避免奇怪的if/elif 分支判断，</span>
+  <span class="token comment" spellcheck="true">#是更准确的状态划分方法</span>
     wordList_set <span class="token operator">=</span> wordList_set <span class="token operator">-</span> set<span class="token punctuation">(</span>q_next<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
   q <span class="token operator">=</span> q_next
 <span class="token keyword">return</span> res</code></pre>
@@ -626,7 +647,7 @@ res <span class="token operator">=</span> <span class="token punctuation">[</spa
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.cs2048.com/uncategorized/leetcode-126-word-ladder-ii/">http://www.cs2048.com/uncategorized/leetcode-126-word-ladder-ii/</a>
+                    <a href="http://www.cs2048.com/algorithms/leetcode-126-word-ladder-ii/">http://www.cs2048.com/algorithms/leetcode-126-word-ladder-ii/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -663,7 +684,15 @@ res <span class="token operator">=</span> <span class="token punctuation">[</spa
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/LeetCode/">
+                                    <span class="chip bg-color">LeetCode</span>
+                                </a>
+                            
+                                <a href="/tags/Algorithms/">
+                                    <span class="chip bg-color">Algorithms</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -829,18 +858,17 @@ res <span class="token operator">=</span> <span class="token punctuation">[</spa
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/uncategorized/leetcode-126-word-ladder-ii/">
+                <a href="/algorithms/132-palindrome-partitioning-ii/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="LeetCode 126. Word Ladder II">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="132. Palindrome Partitioning II">
                         
-                        <span class="card-title">LeetCode 126. Word Ladder II</span>
+                        <span class="card-title">132. Palindrome Partitioning II</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -850,18 +878,33 @@ res <span class="token operator">=</span> <span class="token punctuation">[</spa
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-15
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-17
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Franklin Chen
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Algorithms/" class="post-category">
+                                    Algorithms
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/LeetCode/">
+                        <span class="chip bg-color">LeetCode</span>
+                    </a>
+                    
+                    <a href="/tags/Algorithms/">
+                        <span class="chip bg-color">Algorithms</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>

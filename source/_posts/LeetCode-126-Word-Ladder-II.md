@@ -6,8 +6,10 @@ top: false
 cover: true
 date: 2020-12-15 11:33:20
 updated:
-categories:
+categories: Algorithms
 tags:
+	- Algorithms
+	- LeetCode
 ---
 
 > Given two words (*beginWord* and *endWord*), and a dictionary's word list, find all shortest transformation sequence(s) from *beginWord* to *endWord*, such that:
