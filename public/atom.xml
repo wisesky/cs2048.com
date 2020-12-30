@@ -6,7 +6,7 @@
   <link href="http://www.cs2048.com/atom.xml" rel="self"/>
   
   <link href="http://www.cs2048.com/"/>
-  <updated>2020-12-17T09:31:25.573Z</updated>
+  <updated>2020-12-30T09:44:02.633Z</updated>
   <id>http://www.cs2048.com/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Python 下的多进程和多线程编程</title>
+    <link href="http://www.cs2048.com/algorithms/python-xia-de-duo-jin-cheng-he-duo-xian-cheng-bian-cheng/"/>
+    <id>http://www.cs2048.com/algorithms/python-xia-de-duo-jin-cheng-he-duo-xian-cheng-bian-cheng/</id>
+    <published>2020-12-30T06:22:34.000Z</published>
+    <updated>2020-12-30T09:44:02.633Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;　　之前在并发写日志文件的时候简单的梳理了一下同步和异步的机制，不过对于Python的并发实践涉及还是比较浅显，现在这篇文章希望能彻底从代码角度来重新理解并发编程。&lt;/p&gt;
+&lt;h2 id=&quot;什么是进程-Process-和-线程-Thread&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/categories/Algorithms/"/>
+    
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/tags/Algorithms/"/>
+    
+    <category term="OS" scheme="http://www.cs2048.com/tags/OS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>132. Palindrome Partitioning II</title>
     <link href="http://www.cs2048.com/algorithms/132-palindrome-partitioning-ii/"/>
     <id>http://www.cs2048.com/algorithms/132-palindrome-partitioning-ii/</id>
     <published>2020-12-17T03:06:04.000Z</published>
-    <updated>2020-12-17T09:31:25.573Z</updated>
+    <updated>2020-12-17T09:33:00.529Z</updated>
     
     
       
@@ -164,7 +192,7 @@
     <link href="http://www.cs2048.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/"/>
     <id>http://www.cs2048.com/algorithms/tong-bu-he-yi-bu-bian-cheng-ru-he-bing-xing-xie-tong-yi-ge-ri-zhi-wen-jian-shi-jian/</id>
     <published>2020-11-23T08:27:20.000Z</published>
-    <updated>2020-12-10T08:01:42.373Z</updated>
+    <updated>2020-12-30T09:43:03.929Z</updated>
     
     
       

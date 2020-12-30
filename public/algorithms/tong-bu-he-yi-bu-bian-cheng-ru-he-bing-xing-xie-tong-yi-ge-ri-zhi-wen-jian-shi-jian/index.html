@@ -517,13 +517,13 @@
 <pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> threading<span class="token punctuation">,</span> multiprocessing
 
 <span class="token keyword">def</span> <span class="token function">loop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        x <span class="token operator">=</span> <span class="token number">0</span>
-        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-                x <span class="token operator">=</span> x<span class="token operator">^</span><span class="token number">1</span>
+    x <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        x <span class="token operator">=</span> x<span class="token operator">^</span><span class="token number">1</span>
 
 <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>multiprocessing<span class="token punctuation">.</span>cpu_count<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        t <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target <span class="token operator">=</span> loop<span class="token punctuation">)</span>
-        t<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+    t <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target <span class="token operator">=</span> loop<span class="token punctuation">)</span>
+    t<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 <p>上述程序在多核CPU下占有率只有100%，但是C++/Java改写的死循环，则可以每个核心都跑完，即4核心400%</p>
 <p>更坑的是，GIL锁每个线程只有执行100条字节码的机会，那么有效的利用cuda资源则成为空谈，因为频繁的显存数据进出，比较浪费时间。所以python下一般都是利用多个进程来实现并行，因为多个进程有独立的GIL锁，互不影响。</p>
 <p>　　惭愧的是，自己写了这么久的Python，居然才第一次面对并行化问题，才知道GIL锁有这么多繁琐的坑。理论上证实这样的不可行之后，有点失望，但是也还是保留机会来完成并行写日志这个小任务的，毕竟通过HTTP接口，再怎么并发，框架还是很好的完成的这些繁琐的坑，只需要在producer-consumer 框架下，实现并行接受，串行消费就可以了，这还是比较基础的一个改写，对自己还是有信心的。</p>
@@ -684,13 +684,13 @@ connection<span class="token punctuation">.</span>close<span class="token punctu
 
 <span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
     queue <span class="token operator">=</span> asyncio<span class="token punctuation">.</span>Queue<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token comment" spellcheck="true"># schedule consumer</span>
-  consumer<span class="token operator">=</span> asyncio<span class="token punctuation">.</span>ensure_future<span class="token punctuation">(</span>consume<span class="token punctuation">(</span>queue<span class="token punctuation">)</span><span class="token punctuation">)</span>
-  <span class="token keyword">await</span> producer<span class="token punctuation">(</span>queue<span class="token punctuation">,</span> n<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># schedule consumer</span>
+    consumer<span class="token operator">=</span> asyncio<span class="token punctuation">.</span>ensure_future<span class="token punctuation">(</span>consume<span class="token punctuation">(</span>queue<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">await</span> producer<span class="token punctuation">(</span>queue<span class="token punctuation">,</span> n<span class="token punctuation">)</span>
     <span class="token comment" spellcheck="true"># wait until consumer processed all items</span>
-  <span class="token keyword">await</span> queue<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token comment" spellcheck="true"># consumer is still awaiting item, cancel it</span>
-  consumer<span class="token punctuation">.</span>cancel<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">await</span> queue<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># consumer is still awaiting item, cancel it</span>
+    consumer<span class="token punctuation">.</span>cancel<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
 loop <span class="token operator">=</span> asyncio<span class="token punctuation">.</span>get_event_loop<span class="token punctuation">(</span><span class="token punctuation">)</span>
 loop<span class="token punctuation">.</span>run_until_complete<span class="token punctuation">(</span>run<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>

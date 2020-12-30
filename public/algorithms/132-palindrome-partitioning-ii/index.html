@@ -653,7 +653,7 @@ Output: 1</code></pre>
     maxLen <span class="token operator">=</span> max<span class="token punctuation">(</span>maxLen<span class="token punctuation">,</span> rl<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
   <span class="token keyword">return</span> maxLen<span class="token number">-1</span></code></pre>
 <p>虽说声称时间复杂度是$O(N)$，但是我看代码怎么都像是$O(N^2)$，起码最坏的情况下我想应该是的，假如每次求得的对称RL[j]都接近0，那么RL[i]就得从头遍历，但是另一方面，RL[j]本身就很快的返回了，如果RL[j]很长，那么对应的RL[i]就收益，可以高起点开始计算；从这个角度来看，起码能节省一半的时间，正常情况下应该介于$O(N)$和$O(N^2)$之间，真实情况如何，我也不是很确定。</p>
-<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>　　终于有机会把回文字符这块好好的补习了一下，初识manacher算法认真来讲，是有点失望的，相比于NFA还有最短路径之类的神奇算法，这个有点小打小闹的优化改进，不过还是不得不佩服，就这么一个$O(N^2)$的算法，硬是被人找到机会给优化掉了，真的不能笑看程序员千方百计试图优化的决心啊！</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>　　终于有机会把回文字符这块好好的补习了一下，初识manacher算法认真来讲，是有点失望的，相比于NFA还有最短路径之类的神奇算法，这个有点小打小闹的优化改进，不过还是不得不佩服，就这么一个$O(N^2)$的算法，硬是被人找到机会给优化掉了，真的不能小看程序员想要改进算法的决心啊！</p>
 <p>Reference:</p>
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000003914228">最长回文子串-Manacher算法</a></p>
 
@@ -892,18 +892,17 @@ Output: 1</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/algorithms/132-palindrome-partitioning-ii/">
+                <a href="/algorithms/python-xia-de-duo-jin-cheng-he-duo-xian-cheng-bian-cheng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="132. Palindrome Partitioning II">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Python 下的多进程和多线程编程">
                         
-                        <span class="card-title">132. Palindrome Partitioning II</span>
+                        <span class="card-title">Python 下的多进程和多线程编程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -913,9 +912,9 @@ Output: 1</code></pre>
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-17
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-30
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -928,16 +927,15 @@ Output: 1</code></pre>
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/LeetCode/">
-                        <span class="chip bg-color">LeetCode</span>
-                    </a>
-                    
                     <a href="/tags/Algorithms/">
                         <span class="chip bg-color">Algorithms</span>
+                    </a>
+                    
+                    <a href="/tags/OS/">
+                        <span class="chip bg-color">OS</span>
                     </a>
                     
                 </div>
