@@ -200,7 +200,7 @@ plot([mp_mean, rn_mean, pp_mean],
 
 `DistributedDataParallel`可以通过以下两种方式使用：
 
-#### 单线程多GPU
+#### 单进程多GPU
 
 ```python
 torch.distributed.init_process_group(backend="nccl")
@@ -209,7 +209,7 @@ model = DistributedDataParallel(model)
 
 ```
 
-#### 多线程多GPU
+#### 多进程多GPU
 
 　　强烈推荐的使用方式，在单机多GPU的情况下，单进程很容易由于GIL出现利用率不足的问题，这时候多进程就是唯一解决办法。最佳实践是，将DDP(DistributedDataParallel)配合多进程一起使用，每个GPU分配一个进程，会比torch.nn.DataParallel快得多，也是目前Pytorch最快的训练方法。
 
