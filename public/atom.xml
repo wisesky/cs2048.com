@@ -6,7 +6,7 @@
   <link href="http://www.cs2048.com/atom.xml" rel="self"/>
   
   <link href="http://www.cs2048.com/"/>
-  <updated>2020-12-30T09:44:02.633Z</updated>
+  <updated>2021-03-19T03:06:50.320Z</updated>
   <id>http://www.cs2048.com/</id>
   
   <author>
@@ -17,11 +17,263 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>双重思想（转载）</title>
+    <link href="http://www.cs2048.com/sui-bi/shuang-chong-si-xiang-zhuan-zai/"/>
+    <id>http://www.cs2048.com/sui-bi/shuang-chong-si-xiang-zhuan-zai/</id>
+    <published>2021-03-19T03:02:29.000Z</published>
+    <updated>2021-03-19T03:06:50.320Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;一遍非常详细的解释双重思想定义的文章&lt;/p&gt;
+&lt;p&gt;From : &lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="http://www.cs2048.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="http://www.cs2048.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="1984" scheme="http://www.cs2048.com/tags/1984/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于未来的计划</title>
+    <link href="http://www.cs2048.com/sui-bi/guan-yu-wei-lai-de-ji-hua/"/>
+    <id>http://www.cs2048.com/sui-bi/guan-yu-wei-lai-de-ji-hua/</id>
+    <published>2021-03-18T02:46:45.000Z</published>
+    <updated>2021-05-20T07:32:04.510Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;　　经过上一次的风波，我需要为自己的未来做一番规划，避免自己再次陷入被动？&lt;/p&gt;
+&lt;p&gt;　　宏观来看，我只有一个追求，那就是自由。这是一个很宽泛的概念，叠加上我个人的追求，那具体来看就是自由的探索这个世界，可以是周游世界，也可以是感兴趣的学科领域，不断探索和创造，体验这个</summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="http://www.cs2048.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="http://www.cs2048.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>权力的意志如何影响我的生活</title>
+    <link href="http://www.cs2048.com/sui-bi/quan-li-de-yi-zhi-ru-he-ying-xiang-wo-de-sheng-huo/"/>
+    <id>http://www.cs2048.com/sui-bi/quan-li-de-yi-zhi-ru-he-ying-xiang-wo-de-sheng-huo/</id>
+    <published>2021-03-15T10:51:14.000Z</published>
+    <updated>2021-05-20T07:48:13.153Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt; Maybe I’m a</summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="http://www.cs2048.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="http://www.cs2048.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="反思" scheme="http://www.cs2048.com/tags/%E5%8F%8D%E6%80%9D/"/>
+    
+    <category term="哲学" scheme="http://www.cs2048.com/tags/%E5%93%B2%E5%AD%A6/"/>
+    
+    <category term="王小波" scheme="http://www.cs2048.com/tags/%E7%8E%8B%E5%B0%8F%E6%B3%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>跳出刷题的自我怀疑(转载)</title>
+    <link href="http://www.cs2048.com/algorithms/tiao-chu-shua-ti-de-zi-wo-huai-yi-zhuan-zai/"/>
+    <id>http://www.cs2048.com/algorithms/tiao-chu-shua-ti-de-zi-wo-huai-yi-zhuan-zai/</id>
+    <published>2021-03-10T03:08:08.000Z</published>
+    <updated>2021-03-10T03:10:56.692Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;刷题中总感觉自己是个废物，终于在这篇文章中找到原因&lt;/p&gt;
+&lt;p&gt;From &lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/categories/Algorithms/"/>
+    
+    
+    <category term="LeetCode" scheme="http://www.cs2048.com/tags/LeetCode/"/>
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/tags/Algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>时断时续的执行力反思</title>
+    <link href="http://www.cs2048.com/sui-bi/shi-duan-shi-xu-de-zhi-xing-li-fan-si/"/>
+    <id>http://www.cs2048.com/sui-bi/shi-duan-shi-xu-de-zhi-xing-li-fan-si/</id>
+    <published>2021-03-02T10:50:09.000Z</published>
+    <updated>2021-04-02T02:53:21.397Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;　　自从去年国庆开始写blog之后，更新过程尤为艰难，兴趣点的转移，执行力时断时续，尽管深知自己有这样三分钟热度的嗜好，但是仍然难以有效利用或者纠正，任由其发展。这与当初设想的定期更新的理想大相径庭，其实要论原因，每一篇随笔里都或多或少有提及，结果上来看，还是执行力不强的问</summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="http://www.cs2048.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="http://www.cs2048.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="总结" scheme="http://www.cs2048.com/tags/%E6%80%BB%E7%BB%93/"/>
+    
+    <category term="反思" scheme="http://www.cs2048.com/tags/%E5%8F%8D%E6%80%9D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>147/148 merge sort</title>
+    <link href="http://www.cs2048.com/algorithms/147-148-merge-sort/"/>
+    <id>http://www.cs2048.com/algorithms/147-148-merge-sort/</id>
+    <published>2021-01-21T07:24:50.000Z</published>
+    <updated>2021-01-21T08:28:05.905Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Given the &lt;code&gt;head&lt;/code&gt; of a linked list, return &lt;em&gt;the list after sorting it in &lt;strong&gt;ascending</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/categories/Algorithms/"/>
+    
+    
+    <category term="LeetCode" scheme="http://www.cs2048.com/tags/LeetCode/"/>
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/tags/Algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>146 LRU Cache</title>
+    <link href="http://www.cs2048.com/uncategorized/146-lru-cache/"/>
+    <id>http://www.cs2048.com/uncategorized/146-lru-cache/</id>
+    <published>2021-01-13T10:08:17.000Z</published>
+    <updated>2021-01-21T07:23:17.970Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Design a data structure that follows the constraints of a &lt;strong&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>139 Word Break</title>
+    <link href="http://www.cs2048.com/algorithms/139-word-break/"/>
+    <id>http://www.cs2048.com/algorithms/139-word-break/</id>
+    <published>2021-01-13T10:04:29.000Z</published>
+    <updated>2021-01-14T08:29:29.193Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Given a &lt;strong&gt;non-empty&lt;/strong&gt; string &lt;em&gt;s&lt;/em&gt; and a dictionary &lt;em&gt;wordDict&lt;/em&gt;containing a list of</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/categories/Algorithms/"/>
+    
+    
+    <category term="LeetCode" scheme="http://www.cs2048.com/tags/LeetCode/"/>
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/tags/Algorithms/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>135 Candy</title>
+    <link href="http://www.cs2048.com/algorithms/135-candy/"/>
+    <id>http://www.cs2048.com/algorithms/135-candy/</id>
+    <published>2021-01-13T07:59:39.000Z</published>
+    <updated>2021-01-13T10:03:53.128Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;There are &lt;em&gt;N&lt;/em&gt; children standing in a line. Each child is assigned a rating value.&lt;/p&gt;
+&lt;p&gt;You are giving candies to</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/categories/Algorithms/"/>
+    
+    
+    <category term="LeetCode" scheme="http://www.cs2048.com/tags/LeetCode/"/>
+    
+    <category term="Algorithms" scheme="http://www.cs2048.com/tags/Algorithms/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Python 下的多进程和多线程编程</title>
     <link href="http://www.cs2048.com/algorithms/python-xia-de-duo-jin-cheng-he-duo-xian-cheng-bian-cheng/"/>
     <id>http://www.cs2048.com/algorithms/python-xia-de-duo-jin-cheng-he-duo-xian-cheng-bian-cheng/</id>
     <published>2020-12-30T06:22:34.000Z</published>
-    <updated>2020-12-30T09:44:02.633Z</updated>
+    <updated>2021-01-04T03:28:00.190Z</updated>
     
     
       
@@ -162,7 +414,7 @@
     <link href="http://www.cs2048.com/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/"/>
     <id>http://www.cs2048.com/pytorch/gpu-in-pytorch-bing-xing-he-fen-bu-shi-shi-jian/</id>
     <published>2020-11-25T07:07:07.000Z</published>
-    <updated>2020-12-10T08:34:40.141Z</updated>
+    <updated>2021-01-15T07:10:23.263Z</updated>
     
     
       
@@ -319,31 +571,6 @@
     
     
     <category term="随笔" scheme="http://www.cs2048.com/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://www.cs2048.com/test/hello-world/"/>
-    <id>http://www.cs2048.com/test/hello-world/</id>
-    <published>2020-10-13T08:32:14.454Z</published>
-    <updated>2020-10-13T08:32:14.454Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
-        
-      
-    
-    
-    
-    <category term="test" scheme="http://www.cs2048.com/categories/test/"/>
-    
-    
-    <category term="test" scheme="http://www.cs2048.com/tags/test/"/>
     
   </entry>
   
